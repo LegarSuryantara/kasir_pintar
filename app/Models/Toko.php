@@ -9,6 +9,6 @@ class Toko extends Model
 {
     public function kasir(): HasMany
     {
-        return $this->hasMany(Kasir::class);
+        return $this->hasMany(Kasir::class, 'id_toko');
     }
 }
