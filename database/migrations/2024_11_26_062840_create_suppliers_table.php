@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_supplier');
             $table->string('alamat');
-            $table->string('no_hp'); // Menggunakan string untuk nomor telepon
+            $table->string('no_hp', 12); // Menggunakan string untuk nomor telepon
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
             
         });

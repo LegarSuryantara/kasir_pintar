@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_customer');
             $table->string('email');
-            $table->string('no_hp');
+            $table->string('no_hp', 12);
             $table->string('alamat');
             $table->timestamps(); // Menambahkan kolom created_at dan updated_at
             
