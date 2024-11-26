@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 class TokoController extends Controller
 {
+
     
     // public function kasir()
     // {
@@ -14,5 +15,15 @@ class TokoController extends Controller
     //         echo $kasir;
     //     }
     // }
+
+
+public function index(){
+    $kategoris = Toko::find(1)->kategoris;
+     
+    foreach ($kategoris as $kategori) {
+        echo $kategori;
+    }
+}
+   
 
 }

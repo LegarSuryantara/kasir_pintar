@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_toko');
-            $table->string('no_telp', 12);
-            $table->string('alamat');
+            $table->unsignedBigInteger('id_toko');
+            $table->string('kategori');
             $table->timestamps();
+            $table->foreign('id_toko')->references('id')->on('tokos');
         });
     }
 
