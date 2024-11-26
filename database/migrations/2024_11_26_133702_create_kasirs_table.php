@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('suppliers', function (Blueprint $table) {
+        Schema::create('kasirs', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_supplier');
+            $table->unsignedBigInteger('id_toko');
+            $table->string('nama_kasir');
+            $table->string('no_hp', 12);
             $table->string('alamat');
-            $table->string('no_hp', 12); // Menggunakan string untuk nomor telepon
-            $table->timestamps(); // Menambahkan kolom created_at dan updated_at
-            
+            $table->timestamps();
+
+            $table->foreign('id_toko')->references('id')->on('tokos');
         });
     }
 
@@ -26,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('suppliers');
+        Schema::dropIfExists('kasirs');
     }
 };
