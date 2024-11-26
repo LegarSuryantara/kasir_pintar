@@ -11,4 +11,8 @@ class Toko extends Model
     {
         return $this->hasMany(Kasir::class);
     }
+    public function kategori(): HasMany
+    {
+        return $this->hasMany(Kategori::class);
+    }
 }
