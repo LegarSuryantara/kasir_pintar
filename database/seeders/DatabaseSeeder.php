@@ -26,7 +26,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             KasirSeeder::class,
             PajakSeeder::class,
-
+            DiskonSeeder::class,
         ]);
     }
 }
