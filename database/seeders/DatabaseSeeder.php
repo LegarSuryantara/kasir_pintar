@@ -25,7 +25,8 @@ class DatabaseSeeder extends Seeder
             TokoSeeder::class,
             KategoriSeeder::class,
             KasirSeeder::class,
-            DiskonSeeder::class
+            PajakSeeder::class,
+            DiskonSeeder::class,
         ]);
     }
 }
