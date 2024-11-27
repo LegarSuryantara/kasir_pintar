@@ -15,4 +15,8 @@ class Toko extends Model
     {
         return $this->hasMany(Kategori::class);
     }
+    public function pajak(): HasMany
+    {
+        return $this->hasMany(Pajak::class);
+    }
 }
