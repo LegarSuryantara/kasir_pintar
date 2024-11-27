@@ -14,10 +14,10 @@ return new class extends Migration
     {
         Schema::create('kategoris', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('id_toko');
             $table->string('kategori');
             $table->timestamps();
-            $table->foreign('id_toko')->references('id')->on('tokos');
+
+            $table->foreignId('toko_id')->constrained();
         });
     }
 

@@ -11,6 +11,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/cekkasir', [KasirController::class, 'kasir']);
-Route::get('/kategoritoko',[KategoriController::class,'index']);
+Route::get('/cekkasir', [KasirController::class, 'get_all']);
+Route::get('/cekkategori',[KategoriController::class,'get_all']);
 

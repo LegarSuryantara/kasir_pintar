@@ -9,6 +9,6 @@ class Kasir extends Model
 {
     public function toko(): BelongsTo
     {
-        return $this->belongsTo(Toko::class, 'id_toko');
+        return $this->belongsTo(Toko::class);
     }
 }
