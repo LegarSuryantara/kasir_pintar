@@ -9,7 +9,7 @@ class Toko extends Model
 {
     public function kasir(): HasMany
     {
-        return $this->hasMany(Kasir::class, 'id_toko');
+        return $this->hasMany(Kasir::class);
     }
     public function kategori(): HasMany
     {

@@ -14,10 +14,10 @@ class KasirSeeder extends Seeder
     public function run(): void
     {
         DB::table('kasirs')->insert([
-            'id_toko' => 1,
             'nama_kasir' => 'Ucup Sumbul',
             'no_hp' => '08976533689',
             'alamat' => 'Pati',
+            'toko_id' => 1,
         ]);
     }
 }

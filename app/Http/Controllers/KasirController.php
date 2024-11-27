@@ -10,7 +10,11 @@ class KasirController extends Controller
     {
         $kasir = Kasir::find(1);
         return $kasir->toko->nama_toko;
-        
+    }
+
+    public function get_all(){
+        $kasir = kasir::with('toko')->get();
+        return $kasir;
     }
     //
 }
