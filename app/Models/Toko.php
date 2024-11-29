@@ -23,4 +23,12 @@ class Toko extends Model
     {
         return $this->hasMany(Diskon::class);
     }
+    public function stok(): HasMany
+    {
+        return $this->hasMany(Stok::class);
+    }
+    public function pengadaan(): HasMany
+    {
+        return $this->hasMany(Pengadaan::class);
+    }
 }
