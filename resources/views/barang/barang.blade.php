@@ -46,9 +46,7 @@
         <div class="d-flex mb-3">
             <a href=" {{ route('barang.create') }}
 " class="btn btn-success me-2">Tambah Produk</a>
-            <div class="ms-auto">
-                <input type="text" class="form-control" placeholder="Cari Barang atau Jasa">
-            </div>
+            
         </div>
         <table class="table table-bordered">
             <thead>
@@ -82,12 +80,7 @@
             </tbody>
             <div class="d-flex justify-content-between">
                 <div>Showing 1 to 5 of 5 entries</div>
-                <div>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </div>
+
             </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>

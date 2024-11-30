@@ -41,14 +41,12 @@
 
 <body>
     <div class="container">
-        <h4>Barang atau Jasa</h4>
-        <p>Database / Barang atau Jasa</p>
+        <h4>Kategori</h4>
+        <p>Daftar Kategori</p>
         <div class="d-flex mb-3">
             <a href=" {{ route('kategori.create') }}
-" class="btn btn-success me-2">Tambah Produk</a>
-            <div class="ms-auto">
-                <input type="text" class="form-control" placeholder="Cari Barang atau Jasa">
-            </div>
+" class="btn btn-success me-2">Tambah Kategori</a>
+
         </div>
         <table class="table table-bordered">
             <thead>
@@ -66,8 +64,8 @@
                     <td>{{ $kategori->kategori }}</td>
                     <td>{{ $kategori->toko->nama_toko }}</td>
                     <td>
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="" method="POST">
-                            <a href="" class="btn btn-sm btn-primary">Edit</a>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.delete', $kategori->id) }}" method="POST">
+                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -82,12 +80,10 @@
             </tbody>
             <div class="d-flex justify-content-between">
                 <div>Showing 1 to 5 of 5 entries</div>
-                <div>
-                    <ul class="pagination mb-0">
-                        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </div>
+                
             </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+3i5q5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i5Y5i
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

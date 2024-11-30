@@ -41,33 +41,32 @@
 <body>
     <div class="container">
         <h4 class="text-center">
-            Tambah Kategori
+            Ubah Kategori
         </h4>
-        <form action="{{ route('kategori.store') }}" method="post">
+        <form action="{{ route('kategori.update', $kategori->id) }}" method="post">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="kategori">
                     Nama Kategori
                 </label>
-                <input class="form-control" id="kategori" name="kategori" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('kategori', $kategori->kategori) }}" id="kategori" name="kategori" placeholder="Min 3 Huruf" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">
-                    Nama Toko
+                    Toko
                 </label>
                 <select class="form-select" id="toko" name="toko_id">
-                    <option value="" selected disabled>Pilih Toko</option>
+                    <option value="" selected disabled>Pilih Kategori</option>
                     @foreach ($tokos as $toko)
-                    <option value="{{ $toko->id }}">{{ $toko->nama_toko }}</option>
+                    <option value="{{ $toko->id }}" {{ $toko->id == $kategori->toko_id ? 'selected' : '' }}>
+                            {{ $toko->nama_toko }}
+                        </option>
                     @endforeach
                 </select>
             </div>
             <div class="d-flex justify-content-end">
-                <button class="btn btn-secondary me-2" type="reset">
-                    Reset
-                </button>
                 <button class="btn btn-primary" type="submit">
-                    Add
+                    Save
                 </button>
             </div>
         </form>
