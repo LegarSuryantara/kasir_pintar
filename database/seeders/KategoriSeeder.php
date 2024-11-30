@@ -15,8 +15,18 @@ class KategoriSeeder extends Seeder
     public function run(): void
     {
         DB::table('kategoris')->insert([
-            'kategori' => 'makanan',
-            'toko_id' => 1,
+            [
+                'kategori' => 'makanan',
+                'toko_id' => 1,
+            ],
+            [
+                'kategori' => 'minuman',
+                'toko_id' => 1,
+            ],
+            [
+                'kategori' => 'snack',
+                'toko_id' => 1,
+            ],
         ]);
     }
 }

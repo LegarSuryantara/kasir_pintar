@@ -17,6 +17,25 @@ Route::get('/', function () {
 });
 
 
+Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
+Route::post('/kategorii', [KategoriController::class, 'store'])->name('kategori.store');
+Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
+Route::get('/stok', [BarangController::class, 'index'])->name('barang.index');
+Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
+Route::post('/barang/{barang}', [BarangController::class, 'update'])->name('barang.update');
+Route::delete('/barang/{barang}', [BarangController::class, 'delete'])->name('barang.delete');
+Route::get('/barang/{barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+
+
+
+
+
+
+
+
+
+
 Route::get('/cekkasir', [KasirController::class, 'get_all']);
 Route::get('/cekkategori',[KategoriController::class,'get_all']);
 Route::get('/cekpajak',[PajakController::class,'get_all']);

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('jumlah_stok');
             $table->foreignId('toko_id')->constrained();
             $table->foreignId('barang_id')->constrained();
+            $table->foreignId('detail_pengadaan_id')->constrained();
             $table->timestamps();
         });
     }

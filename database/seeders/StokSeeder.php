@@ -17,6 +17,7 @@ class StokSeeder extends Seeder
             'jumlah_stok' => 120,
             'toko_id' => 1,
             'barang_id' => 1,
+            'detail_pengadaan_id' => 1,
         ]);
         
     }
