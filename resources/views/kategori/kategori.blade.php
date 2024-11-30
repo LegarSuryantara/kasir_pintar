@@ -55,8 +55,8 @@
                 <tr>
                     <th>id</th>
                     <th>Kategori</th>
-                    <th>Kategori</th>
-                    <th>Toko</th>
+                    <th>Nama Toko</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
