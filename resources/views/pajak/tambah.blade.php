@@ -48,9 +48,9 @@
             
             <div class="mb-3">
                 <label class="form-label" for="presentase">
-                    Presentase
+                    Persentase
                 </label>
-                <input class="form-control" id="presentase" name="presentase" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="presentase" name="presentase" placeholder="Masukkan Persentase" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">

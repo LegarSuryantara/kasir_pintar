@@ -49,31 +49,31 @@
                 <label class="form-label" for="nama_diskon">
                     Nama Diskon
                 </label>
-                <input class="form-control" id="nama_diskon" name="nama_diskon" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="nama_diskon" name="nama_diskon" placeholder="Masukan Nama Diskon" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="jumlah_barang">
                     Jumlah Barang
                 </label>
-                <input class="form-control" id="jumlah_barang" name="jumlah_barang" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="jumlah_barang" name="jumlah_barang" placeholder="Masukan Jumlah Barang" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="presentase">
                     Presentase
                 </label>
-                <input class="form-control" id="presentase" name="presentase" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="presentase" name="presentase" placeholder="Masukan Persentase" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="tanggal_mulai">
                     Tanggal Mulai
                 </label>
-                <input class="form-control" id="tanggal_mulai" name="tanggal_mulai" placeholder="Min 3 Huruf" type="date" />
+                <input class="form-control" id="tanggal_mulai" name="tanggal_mulai" placeholder="Masukan Tanggal Mulai" type="date" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="tanggal_akhir">
                     Tanggal Berakhir
                 </label>
-                <input class="form-control" id="tanggal_akhir" name="tanggal_akhir" placeholder="Min 3 Huruf" type="date" />
+                <input class="form-control" id="tanggal_akhir" name="tanggal_akhir" placeholder="Masukan Tanggal Berakhir" type="date" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">

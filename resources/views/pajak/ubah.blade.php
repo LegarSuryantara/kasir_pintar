@@ -50,7 +50,7 @@
                 <label class="form-label" for="presentase">
                     Persentase
                 </label>
-                <input class="form-control" value="{{ old('pajak', $pajak->pajak) }}" id="presentase" name="presentase" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('pajak', $pajak->pajak) }}" id="presentase" name="presentase" placeholder="Masukkan Persentase" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">

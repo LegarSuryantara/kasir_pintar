@@ -67,13 +67,13 @@
                 <label class="form-label" for="tanggal_mulai">
                     Tanggal Mulai
                 </label>
-                <input class="form-control" value="{{ old('tanggal_mulai', $diskon->tanggal_mulai) }}" id="tanggal_mulai" name="tanggal_mulai" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('tanggal_mulai', $diskon->tanggal_mulai) }}" id="tanggal_mulai" name="tanggal_mulai" placeholder="Masukan Tanggal" type="date" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="tanggal_akhir">
                     Tanggal Berakhir
                 </label>
-                <input class="form-control" value="{{ old('tanggal_akhir', $diskon->tanggal_akhir) }}" id="tanggal_akhir" name="tanggal_akhir" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('tanggal_akhir', $diskon->tanggal_akhir) }}" id="tanggal_akhir" name="tanggal_akhir" placeholder="Masukan Tanggal" type="date" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">

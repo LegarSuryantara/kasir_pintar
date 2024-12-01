@@ -49,19 +49,19 @@
                 <label class="form-label" for="nama_toko">
                     Nama Toko
                 </label>
-                <input class="form-control" id="nama_toko" name="nama_toko" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="nama_toko" name="nama_toko" placeholder="Masukan Nama Toko" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">
                     No Handpone
                 </label>
-                <input class="form-control" id="no_hp" name="no_hp" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="no_hp" name="no_hp" placeholder="Masukan No Handpone" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="alamat">
                     Alamat
                 </label>
-                <input class="form-control" id="alamat" name="alamat" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-secondary me-2" type="reset">

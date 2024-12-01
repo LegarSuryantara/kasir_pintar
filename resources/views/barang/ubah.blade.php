@@ -49,7 +49,7 @@
                 <label class="form-label" for="nama_barang">
                     Nama Barang
                 </label>
-                <input class="form-control" value="{{ old('nama_barang', $barang->nama_barang) }}" id="nama_barang" name="nama_barang" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('nama_barang', $barang->nama_barang) }}" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="kategori">
