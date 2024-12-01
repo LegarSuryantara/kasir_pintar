@@ -36,12 +36,20 @@ Route::get('/toko/create', [TokoController::class, 'create'])->name('toko.create
 Route::post('/toko/{toko}', [TokoController::class, 'update'])->name('toko.update');
 Route::delete('/toko/{toko}', [TokoController::class, 'delete'])->name('toko.delete');
 Route::get('/toko/{toko}/edit', [TokoController::class, 'edit'])->name('toko.edit');
+
 Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
 Route::post('/kasirs', [KasirController::class, 'store'])->name('kasir.store');
 Route::get('/kasir/create', [KasirController::class, 'create'])->name('kasir.create');
 Route::post('/kasir/{kasir}', [KasirController::class, 'update'])->name('kasir.update');
 Route::delete('/kasir/{kasir}', [KasirController::class, 'delete'])->name('kasir.delete');
 Route::get('/kasir/{kasir}/edit', [KasirController::class, 'edit'])->name('kasir.edit');
+
+Route::get('/diskon', [DiskonController::class, 'index'])->name('diskon.index');
+Route::post('/diskons', [DiskonController::class, 'store'])->name('diskon.store');
+Route::get('/diskon/create', [DiskonController::class, 'create'])->name('diskon.create');
+Route::post('/diskon/{diskon}', [DiskonController::class, 'update'])->name('diskon.update');
+Route::delete('/diskon/{diskon}', [DiskonController::class, 'delete'])->name('diskon.delete');
+Route::get('/diskon/{diskon}/edit', [DiskonController::class, 'edit'])->name('diskon.edit');
 
 Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
 Route::post('/suppliers', [SupplierController::class, 'store'])->name('supplier.store');

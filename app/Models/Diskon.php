@@ -10,12 +10,12 @@ class Diskon extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'toko_id',
-        'jumlah_barang',
         'nama_diskon',
+        'jumlah_barang',
         'presentase',
         'tanggal_mulai',
-        'tanggal_akhir'
+        'tanggal_akhir',
+        'toko_id'
     ];
     public function toko(): BelongsTo
     {
