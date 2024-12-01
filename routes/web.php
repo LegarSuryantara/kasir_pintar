@@ -30,15 +30,15 @@ Route::post('/pajak/{pajak}', [PajakController::class, 'update'])->name('pajak.u
 Route::delete('/pajak/{pajak}', [PajakController::class, 'delete'])->name('pajak.delete');
 Route::get('/pajak/{pajak}/edit', [PajakController::class, 'edit'])->name('pajak.edit');
 
-Route::get('/stok', [BarangController::class, 'index'])->name('barang.index');
-Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
+Route::get('/barang', [BarangController::class, 'index'])->name('barang.index');
+Route::post('/barangs', [BarangController::class, 'store'])->name('barang.store');
 Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
 Route::post('/barang/{barang}', [BarangController::class, 'update'])->name('barang.update');
 Route::delete('/barang/{barang}', [BarangController::class, 'delete'])->name('barang.delete');
 Route::get('/barang/{barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
 
 Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
-Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
+Route::post('/customers', [CustomerController::class, 'store'])->name('customer.store');
 Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 Route::post('/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
 Route::delete('/customer/{customer}', [CustomerController::class, 'delete'])->name('customer.delete');
