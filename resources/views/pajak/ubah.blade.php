@@ -45,12 +45,7 @@
         </h4>
         <form action="{{ route('pajak.update', $pajak->id) }}" method="post">
             @csrf
-            <div class="mb-3">
-                <label class="form-label" for="pajak">
-                    Nama Pajak
-                </label>
-                <input class="form-control" value="{{ old('pajak', $pajak->pajak) }}" id="pajak" name="pajak" placeholder="Min 3 Huruf" type="text" />
-            </div>
+            
             <div class="mb-3">
                 <label class="form-label" for="presentase">
                     Persentase

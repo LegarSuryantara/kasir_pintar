@@ -41,27 +41,33 @@
 <body>
     <div class="container">
         <h4 class="text-center">
-            Tambah Pajak
+            Tambah Customer
         </h4>
-        <form action="{{ route('pajak.store') }}" method="post">
+        <form action="{{ route('customer.store') }}" method="post">
             @csrf
-            
             <div class="mb-3">
-                <label class="form-label" for="presentase">
-                    Presentase
+                <label class="form-label" for="nama_customer">
+                    Nama Customer
                 </label>
-                <input class="form-control" id="presentase" name="presentase" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="nama_customer" name="nama_customer" placeholder="Min 3 Huruf" type="text" />
             </div>
             <div class="mb-3">
-                <label class="form-label" for="toko">
-                    Nama Toko
+                <label class="form-label" for="email">
+                    Email
                 </label>
-                <select class="form-select" id="toko" name="toko_id">
-                    <option value="" selected disabled>Pilih Toko</option>
-                    @foreach ($tokos as $toko)
-                    <option value="{{ $toko->id }}">{{ $toko->nama_toko }}</option>
-                    @endforeach
-                </select>
+                <input class="form-control" id="email" name="email" placeholder="Min 3 Huruf" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="no_hp">
+                    No Handpone
+                </label>
+                <input class="form-control" id="no_hp" name="no_hp" placeholder="Min 3 Huruf" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="alamat">
+                    Alamat
+                </label>
+                <input class="form-control" id="alamat" name="alamat" placeholder="Min 3 Huruf" type="text" />
             </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-secondary me-2" type="reset">
