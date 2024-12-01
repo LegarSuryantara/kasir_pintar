@@ -49,25 +49,25 @@
                 <label class="form-label" for="nama_customer">
                     Nama Customer
                 </label>
-                <input class="form-control" value="{{ old('nama_customer', $customers->nama_customer) }}" id="nama_customer" name="nama_customer" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('nama_customer', $customers->nama_customer) }}" id="nama_customer" name="nama_customer" placeholder="Masukkan Nama Customer" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="email">
                     Email
                 </label>
-                <input class="form-control" value="{{ old('email', $customers->email) }}" id="email" name="email" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('email', $customers->email) }}" id="email" name="email" placeholder="Masukkan Email" type="email" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">
                     No Handpone
                 </label>
-                <input class="form-control" value="{{ old('no_hp', $customers->no_hp) }}" id="no_hp" name="no_hp" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('no_hp', $customers->no_hp) }}" id="no_hp" name="no_hp" placeholder="Masukkan No Handpone" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="alamat">
                     Alamat
                 </label>
-                <input class="form-control" value="{{ old('alamat', $customers->alamat) }}" id="alamat" name="alamat" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('alamat', $customers->alamat) }}" id="alamat" name="alamat" placeholder="Masukkan Alamat" type="text" />
             </div>
             
             <div class="d-flex justify-content-end">

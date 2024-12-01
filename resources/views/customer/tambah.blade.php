@@ -49,7 +49,7 @@
                 <label class="form-label" for="nama_customer">
                     Nama Customer
                 </label>
-                <input class="form-control" id="nama_customer" name="nama_customer" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="nama_customer" name="nama_customer" placeholder="Masukkan Nama Customer" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="email">

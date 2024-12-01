@@ -49,19 +49,19 @@
                 <label class="form-label" for="nama_supplier">
                     Nama Supplier
                 </label>
-                <input class="form-control" value="{{ old('nama_supplier', $suppliers->nama_supplier) }}" id="nama_supplier" name="nama_supplier" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('nama_supplier', $suppliers->nama_supplier) }}" id="nama_supplier" name="nama_supplier" placeholder="Masukan Nama Supplier" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">
                     No Handpone
                 </label>
-                <input class="form-control" value="{{ old('no_hp', $suppliers->no_hp) }}" id="no_hp" name="no_hp" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('no_hp', $suppliers->no_hp) }}" id="no_hp" name="no_hp" placeholder="Masukan No Handpone" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="alamat">
                     Alamat
                 </label>
-                <input class="form-control" value="{{ old('alamat', $suppliers->alamat) }}" id="alamat" name="alamat" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('alamat', $suppliers->alamat) }}" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
             
             <div class="d-flex justify-content-end">

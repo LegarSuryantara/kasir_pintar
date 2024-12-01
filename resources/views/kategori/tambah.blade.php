@@ -49,7 +49,7 @@
                 <label class="form-label" for="kategori">
                     Nama Kategori
                 </label>
-                <input class="form-control" id="kategori" name="kategori" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" id="kategori" name="kategori" placeholder="Masukkan Nama Kategori" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="toko">

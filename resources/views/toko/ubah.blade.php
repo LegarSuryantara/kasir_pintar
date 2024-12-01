@@ -49,19 +49,19 @@
                 <label class="form-label" for="nama_toko">
                     Nama Toko
                 </label>
-                <input class="form-control" value="{{ old('nama_toko', $tokos->nama_toko) }}" id="nama_barang" name="nama_toko" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('nama_toko', $tokos->nama_toko) }}" id="nama_barang" name="nama_toko" placeholder="Masukan Nama Toko" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">
                     No Handpone
                 </label>
-                <input class="form-control" value="{{ old('no_hp', $tokos->no_hp) }}" id="no_hp" name="no_hp" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('no_hp', $tokos->no_hp) }}" id="no_hp" name="no_hp" placeholder="Masukan No Handpone" type="text" />
             </div>
             <div class="mb-3">
                 <label class="form-label" for="alamat">
                     Alamat
                 </label>
-                <input class="form-control" value="{{ old('alamat', $tokos->alamat) }}" id="alamat" name="alamat" placeholder="Min 3 Huruf" type="text" />
+                <input class="form-control" value="{{ old('alamat', $tokos->alamat) }}" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
             
             <div class="d-flex justify-content-end">
