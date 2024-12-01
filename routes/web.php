@@ -33,6 +33,12 @@ Route::get('/toko/create', [TokoController::class, 'create'])->name('toko.create
 Route::post('/toko/{toko}', [TokoController::class, 'update'])->name('toko.update');
 Route::delete('/toko/{toko}', [TokoController::class, 'delete'])->name('toko.delete');
 Route::get('/toko/{toko}/edit', [TokoController::class, 'edit'])->name('toko.edit');
+Route::get('/kasir', [KasirController::class, 'index'])->name('kasir.index');
+Route::post('/kasirs', [KasirController::class, 'store'])->name('kasir.store');
+Route::get('/kasir/create', [KasirController::class, 'create'])->name('kasir.create');
+Route::post('/kasir/{kasir}', [KasirController::class, 'update'])->name('kasir.update');
+Route::delete('/kasir/{kasir}', [KasirController::class, 'delete'])->name('kasir.delete');
+Route::get('/kasir/{kasir}/edit', [KasirController::class, 'edit'])->name('kasir.edit');
 
 
 
