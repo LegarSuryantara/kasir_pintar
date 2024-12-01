@@ -12,6 +12,7 @@ use App\Http\Controllers\DiskonController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DetailPengadaanController;
 use App\Http\Controllers\SupplierController;
+use App\Http\Controllers\CustomerController;
 
 
 
@@ -36,6 +37,12 @@ Route::post('/barang/{barang}', [BarangController::class, 'update'])->name('bara
 Route::delete('/barang/{barang}', [BarangController::class, 'delete'])->name('barang.delete');
 Route::get('/barang/{barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
 
+Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
+Route::post('/customer', [CustomerController::class, 'store'])->name('customer.store');
+Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
+Route::post('/customer/{customer}', [CustomerController::class, 'update'])->name('customer.update');
+Route::delete('/customer/{customer}', [CustomerController::class, 'delete'])->name('customer.delete');
+Route::get('/customer/{customer}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
 
 Route::get('/toko', [TokoController::class, 'index'])->name('toko.index');
 Route::post('/tokos', [TokoController::class, 'store'])->name('toko.store');
