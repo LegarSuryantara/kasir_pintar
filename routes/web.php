@@ -22,6 +22,13 @@ Route::post('/kategori/{kategori}', [KategoriController::class, 'update'])->name
 Route::delete('/kategori/{kategori}', [KategoriController::class, 'delete'])->name('kategori.delete');
 Route::get('/kategori/{kategori}/edit', [KategoriController::class, 'edit'])->name('kategori.edit');
 
+Route::get('/pajak', [PajakController::class, 'index'])->name('pajak.index');
+Route::post('/pajaks', [PajakController::class, 'store'])->name('pajak.store');
+Route::get('/pajak/create', [PajakController::class, 'create'])->name('pajak.create');
+Route::post('/pajak/{pajak}', [PajakController::class, 'update'])->name('pajak.update');
+Route::delete('/pajak/{pajak}', [PajakController::class, 'delete'])->name('pajak.delete');
+Route::get('/pajak/{pajak}/edit', [PajakController::class, 'edit'])->name('pajak.edit');
+
 Route::get('/stok', [BarangController::class, 'index'])->name('barang.index');
 Route::post('/barang', [BarangController::class, 'store'])->name('barang.store');
 Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.create');
