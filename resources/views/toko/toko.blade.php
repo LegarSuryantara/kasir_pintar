@@ -46,14 +46,12 @@
         <div class="d-flex mb-3">
             <a href=" {{ route('toko.create') }}
 " class="btn btn-success me-2">Tambah toko</a>
-            <div class="ms-auto">
-                <input type="text" class="form-control" placeholder="tambah toko">
-            </div>
         </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>No</th>
+                    <th>Id Toko</th>
                     <th>Nama Toko</th>
                     <th>No Handpone</th>
                     <th>Alamat</th>
@@ -63,6 +61,7 @@
             <tbody>
                 @forelse ($tokos as $toko)
                 <tr>
+                    <td>{{ $loop->iteration }}
                     <td>{{ $toko->id }}</td>
                     <td>{{ $toko->nama_toko }}</td>
                     <td>{{ $toko->no_hp }}</td>

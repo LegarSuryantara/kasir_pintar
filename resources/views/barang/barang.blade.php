@@ -51,7 +51,8 @@
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>id</th>
+                    <th>No</th>
+                    <th>Id Barang</th>
                     <th>Nama Barang/jasa</th>
                     <th>Kategori</th>
                     <th>Aksi</th>
@@ -60,6 +61,7 @@
             <tbody>
                 @forelse ($barangs as $barang)
                 <tr>
+                    <td>{{ $loop->iteration }}
                     <td>{{ $barang->id }}</td>
                     <td>{{ $barang->nama_barang }}</td>
                     <td>{{ $barang->kategori->kategori }}</td>

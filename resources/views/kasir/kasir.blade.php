@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Barang atau Jasa</title>
+    <title>Daftar Kasir</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <style>
         body {
@@ -41,33 +41,35 @@
 
 <body>
     <div class="container">
-        <h4>Kategori</h4>
-        <p>Daftar Kategori</p>
+        <h4>Kasir</h4>
+        <p>Daftar Kasir</p>
         <div class="d-flex mb-3">
-            <a href=" {{ route('kategori.create') }}
-" class="btn btn-success me-2">Tambah Kategori</a>
-
+            <a href=" {{ route('kasir.create') }}" class="btn btn-success me-2">Tambah Kasir</a>
         </div>
         <table class="table table-bordered">
             <thead>
                 <tr>
                     <th>No</th>
-                    <th>Id Kategori</th>
-                    <th>Kategori</th>
-                    <th>Nama Toko</th>
+                    <th>Id Kasir</th>
+                    <th>Nama</th>
+                    <th>No Handpone</th>
+                    <th>Alamat</th>
+                    <th>Toko/Tempat Bekerja</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse ($kategoris as $kategori)
+                @forelse ($kasirs as $kasir)
                 <tr>
                     <td>{{ $loop->iteration }}
-                    <td>{{ $kategori->id }}</td>
-                    <td>{{ $kategori->kategori }}</td>
-                    <td>{{ $kategori->toko->nama_toko }}</td>
+                    <td>{{ $kasir->id }}</td>
+                    <td>{{ $kasir->nama_kasir }}</td>
+                    <td>{{ $kasir->no_hp }}</td>
+                    <td>{{ $kasir->alamat }}</td>
+                    <td>{{ $kasir->toko->nama_toko }}</td>
                     <td>
-                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kategori.delete', $kategori->id) }}" method="POST">
-                            <a href="{{ route('kategori.edit', $kategori->id) }}" class="btn btn-sm btn-primary">Edit</a>
+                        <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('kasir.delete', $kasir->id) }}" method="POST">
+                            <a href="{{ route('kasir.edit', $kasir->id) }}" class="btn btn-sm btn-primary">Edit</a>
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-danger">Delete</button>
@@ -76,16 +78,17 @@
                 </tr>
                 @empty
                 <div class="alert alert-danger">
-                    Data Post belum Tersedia.
+                    Data kasir belum Tersedia.
                 </div>
                 @endforelse
             </tbody>
             <div class="d-flex justify-content-between">
                 <div>Showing 1 to 5 of 5 entries</div>
-                
+
             </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
+
 </html>
