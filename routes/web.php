@@ -11,6 +11,7 @@ use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DiskonController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\DetailPengadaanController;
+use App\Http\Controllers\SupplierController;
 
 
 
@@ -27,6 +28,8 @@ Route::get('/barang/create', [BarangController::class, 'create'])->name('barang.
 Route::post('/barang/{barang}', [BarangController::class, 'update'])->name('barang.update');
 Route::delete('/barang/{barang}', [BarangController::class, 'delete'])->name('barang.delete');
 Route::get('/barang/{barang}/edit', [BarangController::class, 'edit'])->name('barang.edit');
+
+
 Route::get('/toko', [TokoController::class, 'index'])->name('toko.index');
 Route::post('/tokos', [TokoController::class, 'store'])->name('toko.store');
 Route::get('/toko/create', [TokoController::class, 'create'])->name('toko.create');
@@ -34,10 +37,12 @@ Route::post('/toko/{toko}', [TokoController::class, 'update'])->name('toko.updat
 Route::delete('/toko/{toko}', [TokoController::class, 'delete'])->name('toko.delete');
 Route::get('/toko/{toko}/edit', [TokoController::class, 'edit'])->name('toko.edit');
 
-
-
-
-
+Route::get('/supplier', [SupplierController::class, 'index'])->name('supplier.index');
+Route::post('/suppliers', [SupplierController::class, 'store'])->name('supplier.store');
+Route::get('/supplier/create', [SupplierController::class, 'create'])->name('supplier.create');
+Route::post('/supplier/{supplier}', [SupplierController::class, 'update'])->name('supplier.update');
+Route::delete('/supplier/{supplier}', [SupplierController::class, 'delete'])->name('supplier.delete');
+Route::get('/supplier/{supplier}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
 
 
 Route::get('/cekkasir', [KasirController::class, 'get_all']);
