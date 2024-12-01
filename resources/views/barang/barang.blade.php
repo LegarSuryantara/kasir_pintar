@@ -81,7 +81,7 @@
                 @endforelse
             </tbody>
             <div class="d-flex justify-content-between">
-                <div>Showing 1 to 5 of 5 entries</div>
+                
 
             </div>
     </div>
