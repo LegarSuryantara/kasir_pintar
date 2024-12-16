@@ -8,14 +8,16 @@ use App\Models\Kategori;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Resources\KategoriResource;
 
 class KategoriController extends Controller
 {
 
-    public function index(): view
+    public function index(): View
     {
         $kategoris = Kategori::with(['toko'])->get();
         return view('kategori.kategori', compact('kategoris'));
+        return KategoriResource::collection(Kategori::get());
     }
 
     public function create()
