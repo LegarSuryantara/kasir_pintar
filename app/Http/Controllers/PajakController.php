@@ -18,7 +18,6 @@ class PajakController extends Controller
 
     public function store(Request $request) : RedirectResponse
     {
-        // Validasi input
         $request->validate([
             'presentase' => 'required',
             'toko_id' => 'required|exists:tokos,id',
@@ -77,4 +76,19 @@ class PajakController extends Controller
         $pajak->delete();
         return redirect()->route('pajak.index')->with(['success' => 'berhasil']);
     }
+
+    // public function store(Request $request)
+    // {
+    //     $validateData = $request->validate([
+    //         'id' => 'required|string|mac:255',
+    //         'presentase' => 'required|string|mac:255',
+    //         'created_at' => 'required|string|mac:255',
+    //         'update_at' => 'required|string|mac:255',
+    //         'toko_id' => 'required|string|mac:255',
+    //     ]);
+
+    //     $pajak = Pajak::create($validatedData);
+
+    //     return new PajakResource($pajak);
+    // }
 }
