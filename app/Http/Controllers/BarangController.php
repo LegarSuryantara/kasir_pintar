@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\BarangResource;
 use App\Models\Barang;
 use App\Models\Diskon;
 use App\Models\Kategori;
@@ -15,6 +16,7 @@ class BarangController extends Controller
     {
         $barangs = Barang::with(['kategori'])->get();
         return view('barang.barang', compact('barangs'));
+        return BarangResource::collection(Barang::get());
     }
 
     public function create()
@@ -53,10 +55,10 @@ class BarangController extends Controller
         return redirect()->route('barang.index')->with(['success' => 'berhasil']);
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request) 
     {
-        // Validasi input
-        $request->validate([
+        
+        $validatedData = $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
         ]);
@@ -66,7 +68,9 @@ class BarangController extends Controller
             'kategori_id' => $request->kategori_id
         ]);
 
-        return redirect()->route('barang.index')->with(['success' => 'berhasil']);
+        $barang = Barang::create($validatedData);
+        // return redirect()->route('barang.index')->with(['success' => 'berhasil']);
+        return new BarangResource($barang);
     }
 
     public function barang(){   
