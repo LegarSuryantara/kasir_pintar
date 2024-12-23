@@ -16,6 +16,7 @@ class DiskonController extends Controller
     {
         $diskons = Diskon::with(['toko'])->get();
         return view('diskon.diskon', compact('diskons'));
+        return DiskonController::collection(diskon::get());
     }
 
     public function create()
@@ -52,41 +53,32 @@ class DiskonController extends Controller
         ]);
 
         return redirect()->route('diskon.index')->with(['success' => 'berhasil']);
-        
+
     }
 
     public function delete($id){
-        
+
         $diskon = Diskon::findOrFail($id);
         $diskon->delete();
         return redirect()->route('diskon.index')->with(['success' => 'berhasil']);
     }
 
-    public function store(Request $request) : RedirectResponse
-    {
-        // Validasi input
-        $request->validate([
-            'nama_diskon' => 'required|string|max:255',
-            'jumlah_barang' => 'required',
-            'presentase' => 'required',
-            'tanggal_mulai' => 'required',
-            'tanggal_akhir' => 'required',
-            'toko_id' => 'required|exists:tokos,id',
-        ]);
+    public function store(Request $request): RedirectResponse
+{
+    $validatedData = $request->validate([
+        'nama_diskon' => 'required|string|max:255',
+        'jumlah_barang' => 'required|integer',
+        'presentase' => 'required|numeric',
+        'tanggal_mulai' => 'required|date',
+        'tanggal_akhir' => 'required|date',
+        'toko_id' => 'required|exists:tokos,id',
+    ]);
 
-        Diskon::create([
-            'nama_diskon' => $request->nama_diskon,
-            'jumlah_barang' => $request->jumlah_barang,
-            'presentase' => $request->presentase,
-            'tanggal_mulai' => $request->tanggal_mulai,
-            'tanggal_akhir' => $request->tanggal_akhir,
-            'toko_id' => $request->toko_id
-        ]);
+    $diskon = Diskon::create($validatedData);
+    return new DiskonResource($diskon);
+}
 
-        return redirect()->route('diskon.index')->with(['success' => 'berhasil']);
-    }
-
-    public function diskon(){   
+    public function diskon(){
         $diskon = Diskon::find(1);
         return $diskon;
     }
