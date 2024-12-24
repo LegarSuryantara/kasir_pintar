@@ -15,6 +15,7 @@ class BarangController extends Controller
     public function index(): view
     {
         $barangs = Barang::with(['kategori'])->get();
+        
         return view('barang.barang', compact('barangs'));
         return BarangResource::collection(Barang::get());
     }
@@ -73,13 +74,13 @@ class BarangController extends Controller
         return new BarangResource($barang);
     }
 
-    public function barang(){   
-        $barang = Barang::find(1);
-        return $barang;
-    }
-    public function get_all(){
-        $barang = Barang::with('kategori')->get();
-        return $barang;
-    }
+    // public function barang(){   
+    //     $barang = Barang::find(1);
+    //     return $barang;
+    // }
+    // public function get_all(){
+    //     $barang = Barang::with('kategori')->get();
+    //     return $barang;
+    // }
 
 }
