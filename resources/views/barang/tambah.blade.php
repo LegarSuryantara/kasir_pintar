@@ -62,6 +62,17 @@
                     @endforeach
                 </select>
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="toko">
+                    Nama Toko
+                </label>
+                <select class="form-select" id="toko" name="toko_id">
+                    <option value="" selected disabled>Pilih Toko</option>
+                    @foreach ($tokos as $toko)
+                    <option value="{{ $toko->id }}">{{ $toko->nama_toko }}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-secondary me-2" type="reset">
                     Reset

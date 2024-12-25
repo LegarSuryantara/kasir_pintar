@@ -13,12 +13,17 @@ class Barang extends Model
     protected $fillable = [
         'nama_barang',
         'kategori_id',
+        'toko_id',
     ];
 
 
     public function kategori(): BelongsTo
     {
         return $this->belongsTo(Kategori::class);
+    }
+    public function toko(): BelongsTo
+    {
+        return $this->belongsTo(Toko::class);
     }
 
     public function stok(): HasMany

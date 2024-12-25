@@ -35,6 +35,10 @@ class Toko extends Model
     {
         return $this->hasMany(Stok::class);
     }
+    public function barang(): HasMany
+    {
+        return $this->hasMany(Barang::class);
+    }
     public function pengadaan(): HasMany
     {
         return $this->hasMany(Pengadaan::class);
