@@ -17,7 +17,7 @@ class BarangController extends Controller
         $barangs = Barang::with(['kategori'])->get();
         
         return view('barang.barang', compact('barangs'));
-        return BarangResource::collection(Barang::get());
+        
     }
 
     public function create()
@@ -70,8 +70,8 @@ class BarangController extends Controller
         ]);
 
         $barang = Barang::create($validatedData);
-        // return redirect()->route('barang.index')->with(['success' => 'berhasil']);
-        return new BarangResource($barang);
+        return redirect()->route('barang.index')->with(['success' => 'berhasil']);
+        
     }
 
     // public function barang(){   
