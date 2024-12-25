@@ -55,6 +55,7 @@
                     <th>Id Barang</th>
                     <th>Nama Barang/jasa</th>
                     <th>Kategori</th>
+                    <th>Nama Toko</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
@@ -65,6 +66,7 @@
                     <td>{{ $barang->id }}</td>
                     <td>{{ $barang->nama_barang }}</td>
                     <td>{{ $barang->kategori->kategori }}</td>
+                    <td>{{ $barang->toko->nama_toko }}</td>
                     <td>
                         <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('barang.delete', $barang->id) }}" method="POST">
                             <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-sm btn-primary">Edit</a>

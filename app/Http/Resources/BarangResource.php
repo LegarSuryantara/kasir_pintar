@@ -18,7 +18,8 @@ class BarangResource extends JsonResource
         return [
             'id'=>$this->id,
             'nama_barang'=>$this->nama_barang,
-            'kategori_id'=>$this->kategori_id
+            'kategori_id'=>$this->kategori_id,
+            'toko_id'=>$this->toko_id
         ];
     }
 }
