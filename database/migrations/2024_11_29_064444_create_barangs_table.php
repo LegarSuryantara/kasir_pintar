@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->foreignId('kategori_id')->constrained();
+            $table->foreignId('toko_id')->constrained();
             $table->timestamps();
         });
     }
