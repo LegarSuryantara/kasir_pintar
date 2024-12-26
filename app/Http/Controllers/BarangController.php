@@ -17,7 +17,8 @@ class BarangController extends Controller
     {
         $barangs = Barang::with(['kategori', 'toko'])->get();
         return view('barang.barang', compact('barangs'));
-        
+        // json
+        // return BarangResource::collection(Barang::get());
     }
 
     public function create()
@@ -63,7 +64,7 @@ class BarangController extends Controller
     public function store(Request $request) 
     {
         
-       $request->validate([
+       $validatedData= $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
             'toko_id' => 'required|exists:tokos,id',
@@ -75,8 +76,9 @@ class BarangController extends Controller
             'toko_id' => $request->toko_id
         ]);
 
-
-        $barang = Barang::create($validatedData);
+        //json
+        // $barang = Barang::create($validatedData);
+        // return new BarangResource($barang);
 
         return redirect()->route('barang.index')->with(['success' => 'berhasil']);
         
