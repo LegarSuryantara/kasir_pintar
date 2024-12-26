@@ -5,16 +5,20 @@ use App\Models\Supplier;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Resources\SupplierResource;
 
 class SupplierController extends Controller
 {
 
     
 
-    public function index(): view
+    public function index()
     {
         $suppliers = Supplier::get();
         return view('supplier.supplier', compact('suppliers'));
+
+        //json
+        // return SupplierResource::collection(Supplier::get());
     }
 
     public function create()
@@ -54,10 +58,10 @@ class SupplierController extends Controller
         return redirect()->route('supplier.index')->with(['success' => 'berhasil']);
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request) 
     {
         // Validasi input
-        $request->validate([
+        $validateData = $request->validate([
             'nama_supplier' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -68,6 +72,10 @@ class SupplierController extends Controller
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
         ]);
+
+        // json
+        // $supplier = Supplier::create($validateData);
+        // return new SupplierResource($supplier);
 
         return redirect()->route('supplier.index')->with(['success' => 'berhasil']);
     }
