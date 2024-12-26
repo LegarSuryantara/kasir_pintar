@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\KasirResource;
 use App\Models\Toko;
 use App\Models\kasir;
 use Illuminate\View\View;
@@ -9,10 +11,13 @@ use Illuminate\Http\RedirectResponse;
 
 class KasirController extends Controller
 {
-    public function index(): view
+    public function index()
     {
         $kasirs = Kasir::with(['toko'])->get();
         return view('kasir.kasir', compact('kasirs'));
+
+        //json
+        // return KasirResource::collection(Kasir::get());
     }
 
     public function create()
@@ -58,7 +63,7 @@ class KasirController extends Controller
     public function store(Request $request) : RedirectResponse
     {
         // Validasi input
-        $request->validate([
+        $validatedData = $request->validate([
             'nama_kasir' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -71,6 +76,13 @@ class KasirController extends Controller
             'alamat' => $request->alamat,
             'toko_id' => $request->toko_id
         ]);
+
+
+        //json
+        // $kasir = Kasir::create($validatedData);
+        // return new KasirResource($kasir);
+
+
 
         return redirect()->route('kasir.index')->with(['success' => 'berhasil']);
     }
