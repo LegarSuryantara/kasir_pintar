@@ -76,7 +76,7 @@
                             <tr>
                                 <th>Nama Barang</th>
                                 <th>Kategori</th>
-                                <th>Harga</th>
+                                <th>Toko</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -84,7 +84,7 @@
                             <tr>
                                 <td>{{ $barang->nama_barang }}</td>
                                 <td>{{ $barang->kategori->kategori }}</td>
-                                <td>Rp {{ number_format($barang->harga, 0, ',', '.') }}</td>
+                                <td>{{ $barang->toko_id }}</td>
                             </tr>
                             @empty
                             <tr>

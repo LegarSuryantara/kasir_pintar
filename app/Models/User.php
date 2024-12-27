@@ -23,6 +23,11 @@ class User extends Authenticatable
         'password',
     ];
 
+    public function toko()
+    {
+        return $this->hasMany(Toko::class);
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *

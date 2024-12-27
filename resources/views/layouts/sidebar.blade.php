@@ -1,8 +1,8 @@
 <div class="sidebar" style="width: 250px; min-height: 100vh; position: fixed; left: 0; top: 0; background-color: #FFC107;">
     <div class="p-3">
         <div class="d-flex align-items-center justify-content-center mb-4 mt-2">
-            <i class="fas fa-cash-register text-dark me-2 fs-4"></i>
-            <h4 class="text-dark mb-0">Kasir Pintar</h4>
+            <i class="fas fa-cash-register text-light me-2 fs-4"></i>
+            <h4 class="text-light mb-0" style="font-style: italic ">CashDash</h4>
         </div>
         
         <ul class="nav flex-column">

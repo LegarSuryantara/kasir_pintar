@@ -20,6 +20,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Diskon</th>
+                        <th>Jumlah Barang</th>
                         <th>Persentase</th>
                         <th>Tanggal Mulai</th>
                         <th>Tanggal Berakhir</th>
@@ -31,9 +32,10 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $diskon->nama_diskon }}</td>
-                        <td>{{ $diskon->persentase }}%</td>
+                        <td>{{ $diskon->jumlah_barang }}</td>
+                        <td>{{ $diskon->presentase }}%</td>
                         <td>{{ $diskon->tanggal_mulai }}</td>
-                        <td>{{ $diskon->tanggal_berakhir }}</td>
+                        <td>{{ $diskon->tanggal_akhir }}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('diskon.delete', $diskon->id) }}" method="POST" class="d-inline">
                                 <a href="{{ route('diskon.edit', $diskon->id) }}" class="btn btn-sm btn-primary">
