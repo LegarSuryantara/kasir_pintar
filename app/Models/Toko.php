@@ -13,6 +13,7 @@ class Toko extends Model
         'nama_toko',
         'no_hp',
         'alamat',
+        'user_id',
     ];
 
     public function kasir(): HasMany
@@ -42,5 +43,9 @@ class Toko extends Model
     public function pengadaan(): HasMany
     {
         return $this->hasMany(Pengadaan::class);
+    }
+    public function user(): HasMany
+    {
+        return $this->hasMany(User::class);
     }
 }

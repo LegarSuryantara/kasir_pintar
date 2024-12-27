@@ -19,9 +19,9 @@
                 <thead class="table-light">
                     <tr>
                         <th>No</th>
-                        <th>Nama Pajak</th>
+                        <th>Id Pajak</th>
                         <th>Persentase</th>
-                        <th>Toko</th>
+                        <th>Nama Toko</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -29,9 +29,9 @@
                     @forelse ($pajaks as $pajak)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $pajak->nama_pajak }}</td>
-                        <td>{{ $pajak->persentase }}%</td>
-                        <td>{{ $pajak->deskripsi }}</td>
+                        <td>{{ $pajak->id }}</td>
+                        <td>{{ $pajak->presentase }}%</td>
+                        <td>{{ $pajak->toko->nama_toko }}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('pajak.delete', $pajak->id) }}" method="POST" class="d-inline">
                                 <a href="{{ route('pajak.edit', $pajak->id) }}" class="btn btn-sm btn-primary">

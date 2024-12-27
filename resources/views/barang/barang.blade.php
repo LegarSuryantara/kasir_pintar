@@ -21,7 +21,7 @@
                         <th>No</th>
                         <th>Nama Barang</th>
                         <th>Kategori</th>
-                        <th>Harga</th>
+                        <th>Toko</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -31,7 +31,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $barang->nama_barang }}</td>
                         <td>{{ $barang->kategori->kategori }}</td>
-                        <td>Rp {{ number_format($barang->harga, 0, ',', '.') }}</td>
+                        <td>{{ $barang->toko->nama_toko }}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('barang.delete', $barang->id) }}" method="POST" class="d-inline">
                                 <a href="{{ route('barang.edit', $barang->id) }}" class="btn btn-sm btn-primary">
