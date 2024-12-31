@@ -31,9 +31,9 @@ class PajakController extends Controller
         return redirect()->route('pajak.index')->with(['success' => 'berhasil']);
     }
 
-    public function pajak(){
+    public function get_detail(){
         $pajak = Pajak::find(1);
-        return $pajak->toko->nama_toko;  
+        return $pajak->toko;  
     }
 
     public function get_all(){
