@@ -14,7 +14,7 @@
                     <i class="fas fa-plus me-2"></i>Tambah Barang
                 </a>
             </div>
-            
+
             <table class="table table-bordered table-hover">
                 <thead class="table-light">
                     <tr>
