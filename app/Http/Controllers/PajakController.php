@@ -1,24 +1,28 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pajak;
 use App\Models\Toko;
+use App\Models\Pajak;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Resources\PajakResource;
 use Illuminate\Http\RedirectResponse;
 
 class PajakController extends Controller
 {
 
-    public function index(): view
+    public function index()
     {
         $pajaks = Pajak::with(['toko'])->get();
         return view('pajak.pajak', compact('pajaks'));
+
+        // json
+        // return PajakResource::collection(Pajak::get());
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'presentase' => 'required',
             'toko_id' => 'required|exists:tokos,id',
         ]);
@@ -27,6 +31,10 @@ class PajakController extends Controller
             'presentase' => $request->presentase,
             'toko_id' => $request->toko_id
         ]);
+
+        // json
+        // $pajak = Pajak::create($validateData);
+        // return new PajakResource($pajak);
 
         return redirect()->route('pajak.index')->with(['success' => 'berhasil']);
     }

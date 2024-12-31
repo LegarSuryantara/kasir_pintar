@@ -9,8 +9,6 @@ use Illuminate\Http\RedirectResponse;
 class CustomerController extends Controller
 {
 
-    
-
     public function index(): view
     {
         $customers = Customer::get();

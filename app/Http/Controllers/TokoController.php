@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Http\Resources\TokoResource;
 use App\Models\Toko;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
@@ -11,10 +13,13 @@ class TokoController extends Controller
 
     
 
-    public function index(): view
+    public function index()
     {
         $tokos = Toko::get();
         return view('toko.toko', compact('tokos'));
+
+        // json
+        // return TokoResource::collection(Toko::get());
     }
 
     public function create()
@@ -54,10 +59,10 @@ class TokoController extends Controller
         return redirect()->route('toko.index')->with(['success' => 'berhasil']);
     }
 
-    public function store(Request $request) : RedirectResponse
+    public function store(Request $request)
     {
         // Validasi input
-        $request->validate([
+        $validatedData = $request->validate([
             'nama_toko' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
@@ -68,6 +73,10 @@ class TokoController extends Controller
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
         ]);
+
+        // json
+        // $toko = Toko::create($validatedData);
+        // return new TokoResource($toko);
 
         return redirect()->route('toko.index')->with(['success' => 'berhasil']);
     }
