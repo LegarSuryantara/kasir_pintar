@@ -7,13 +7,14 @@ use App\Http\Controllers\StokController;
 use App\Http\Controllers\TokoController;
 use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PajakController;
+use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\DiskonController;
-use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\DetailPengadaanController;
-use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DetailPengadaanController;
 
 
 
@@ -74,12 +75,11 @@ Route::delete('/supplier/{supplier}', [SupplierController::class, 'delete'])->na
 Route::get('/supplier/{supplier}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
 
 
-Route::get('/cekkasir', [KasirController::class, 'get_all']);
-Route::get('/cekkategori',[KategoriController::class,'get_all']);
-Route::get('/cekpajak',[PajakController::class,'get_all']);
-Route::get('/cekdiskon', [DiskonController::class, 'get_all']);
-Route::get('/cekbarang', [BarangController::class, 'get_all']);
-Route::get('/cekdetailpengadaan', [DetailPengadaanController::class, 'get_all']);
-Route::get('/cekstok', [StokController::class, 'stok']);
-
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::get('/shift', [ShiftController::class, 'index'])->name('shift.index');
+Route::post('/shifts', [ShiftController::class, 'store'])->name('shift.store');
+Route::get('/shift/create', [ShiftController::class, 'create'])->name('shift.create');
+Route::post('/shift/{shift}', [ShiftController::class, 'update'])->name('shift.update');
+Route::delete('/shift/{shift}', [ShiftController::class, 'delete'])->name('shift.delete');
+Route::get('/shift/{shift}/edit', [ShiftController::class, 'edit'])->name('shift.edit');

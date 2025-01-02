@@ -21,6 +21,7 @@ class Barang extends Model
     {
         return $this->belongsTo(Kategori::class);
     }
+
     public function toko(): BelongsTo
     {
         return $this->belongsTo(Toko::class);

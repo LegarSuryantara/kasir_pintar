@@ -59,6 +59,12 @@
                     <i class="fas fa-tag me-2"></i> Diskon
                 </a>
             </li>
+
+            <li class="nav-item mb-2">
+                <a href="{{ route('shift.index') }}" class="nav-link text-dark {{ request()->routeIs('shift.*') ? 'active' : '' }}">
+                    <i class="fas fa-clock me-2"></i> Shift
+                </a>
+            </li>
         </ul>
     </div>
 </div>
