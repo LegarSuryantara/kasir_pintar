@@ -14,6 +14,7 @@ use App\Http\Controllers\DetailPengadaanController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TransaksiController;
 
 
 
@@ -83,3 +84,4 @@ Route::get('/cekdetailpengadaan', [DetailPengadaanController::class, 'get_all'])
 Route::get('/cekstok', [StokController::class, 'stok']);
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
