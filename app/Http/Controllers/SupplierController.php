@@ -10,7 +10,7 @@ use App\Http\Resources\SupplierResource;
 class SupplierController extends Controller
 {
 
-    
+
 
     public function index()
     {
@@ -48,17 +48,17 @@ class SupplierController extends Controller
         ]);
 
         return redirect()->route('supplier.index')->with(['success' => 'berhasil']);
-        
+
     }
 
     public function delete($id){
-        
+
         $supplier = Supplier::findOrFail($id);
         $supplier->delete();
         return redirect()->route('supplier.index')->with(['success' => 'berhasil']);
     }
 
-    public function store(Request $request) 
+    public function store(Request $request)
     {
         // Validasi input
         $validateData = $request->validate([
@@ -89,11 +89,63 @@ class SupplierController extends Controller
 
 // public function index(){
 //     $kategoris = Toko::find(1)->kategoris;
-     
+
 //     foreach ($kategoris as $kategori) {
 //         echo $kategori;
 //     }
 // }
-   
+#API
+
+public function indexAPI()
+{
+    $supplier = Supplier::all();
+    return SupplierResource::collection(Supplier::get());
+}
+public function getSingleData($id)
+{
+    $Supplier = Supplier::with([])->findOrFail($id);
+
+    $data = [
+        'Supplier' => new SupplierResource($Supplier)
+    ];
+
+    return $data;
+}
+
+
+public function storeAPI(Request $request)
+{
+
+    $validatedData = $request->validate([
+        'nama_supplier' => 'required|string|max:255',
+        'no_hp' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+    ]);
+    $Supplier = Supplier::create($validatedData);
+    return new SupplierResource($Supplier);
+}
+
+public function updateAPI(Request $request, $id)
+{
+    $validatedData = $request->validate([
+        'nama_supplier' => 'required|string|max:255',
+        'no_hp' => 'required|string|max:255',
+        'alamat' => 'required|string|max:255',
+    ]);
+
+    $supplier = Supplier::findOrFail($id);
+    $supplier->update($validatedData);
+    return new SupplierResource($supplier);
+}
+
+
+public function deleteAPI($id){
+    $supplier = Supplier::findOrFail($id);
+    $supplier->delete();
+    return (['success' => 'berhasil']);
+}
+
+
 
 }
+
