@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\DiskonResource;
 use App\Models\Toko;
 use App\Models\Diskon;
 use Illuminate\View\View;
@@ -100,13 +101,15 @@ class DiskonController extends Controller
 
     //api
 
-    public function indexApi() :JsonResponse
+    public function indexApi()
     {
         $diskons = Diskon::with(['toko'])->get();
         return response()->json(['data'=>$diskons]);
+        return DiskonResource::collection(Diskon::get());
     }
 
-    public function getSingleData($id) :JsonResponse {
+    public function getSingleData($id)
+    {
         $diskon = diskon::findOrFail($id);
         $tokos = Toko::all();
         $data = [

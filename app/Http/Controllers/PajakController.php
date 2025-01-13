@@ -39,15 +39,6 @@ class PajakController extends Controller
         return redirect()->route('pajak.index')->with(['success' => 'berhasil']);
     }
 
-    public function pajak(){
-        $pajak = Pajak::find(1);
-        return $pajak->toko->nama_toko;  
-    }
-
-    public function get_all(){
-        $pajak = Pajak::with('toko')->get();
-        return $pajak;
-    }
 
     public function create()
     {
@@ -85,18 +76,52 @@ class PajakController extends Controller
         return redirect()->route('pajak.index')->with(['success' => 'berhasil']);
     }
 
-    // public function store(Request $request)
-    // {
-    //     $validateData = $request->validate([
-    //         'id' => 'required|string|mac:255',
-    //         'presentase' => 'required|string|mac:255',
-    //         'created_at' => 'required|string|mac:255',
-    //         'update_at' => 'required|string|mac:255',
-    //         'toko_id' => 'required|string|mac:255',
-    //     ]);
+        #API
+        public function indexAPI()
+        {
+            Pajak::with(['toko'])->get();
+            return PajakResource::collection(Pajak::get());
+        }
 
-    //     $pajak = Pajak::create($validatedData);
-
-    //     return new PajakResource($pajak);
-    // }
+        public function getSingleData($id)
+        {
+            $pajak = Pajak::with(['toko'])->findOrFail($id);
+        
+            $data = [
+                'pajak' => new PajakResource($pajak)
+            ];
+        
+            return $data; 
+        }
+    
+        
+        public function storeAPI(Request $request) 
+        {
+            
+            $validatedData = $request->validate([
+                'presentase' => 'required',
+                'toko_id' => 'required|exists:tokos,id',
+            ]);
+            $pajak = Pajak::create($validatedData);
+            return new PajakResource($pajak);
+        }
+    
+        public function updateAPI(Request $request, $id)
+        {
+            $validatedData = $request->validate([
+                'presentase' => 'required',
+                'toko_id' => 'required|exists:tokos,id',
+            ]);
+        
+            $pajak = Pajak::findOrFail($id);
+            $pajak->update($validatedData);
+            return new PajakResource($pajak);
+        }
+    
+        
+        public function deleteAPI($id){
+            $pajak = Pajak::findOrFail($id);
+            $pajak->delete();
+            return (['success' => 'berhasil']);
+        }
 }

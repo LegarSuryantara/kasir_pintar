@@ -105,13 +105,59 @@ class BarangController extends Controller
         
     }
 
-    // public function barang(){   
-    //     $barang = Barang::find(1);
-    //     return $barang;
-    // }
-    // public function get_all(){
-    //     $barang = Barang::with('kategori')->get();
-    //     return $barang;
-    // }
 
+
+    #API
+
+    public function indexAPI()
+    {
+        Barang::with(['kategori', 'toko'])->get();
+        return BarangResource::collection(Barang::get());
+    }
+    public function getSingleData($id)
+    {
+        $barang = Barang::with(['kategori', 'toko'])->findOrFail($id);
+    
+        $data = [
+            'barang' => new BarangResource($barang)
+        ];
+    
+        return $data; 
+    }
+
+    
+    public function storeAPI(Request $request) 
+    {
+        
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'toko_id' => 'required|exists:tokos,id',
+        ]);
+        $barang = Barang::create($validatedData);
+        return new BarangResource($barang);
+    }
+
+    public function updateAPI(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'toko_id' => 'required|exists:tokos,id',
+        ]);
+    
+        $barang = Barang::findOrFail($id);
+        $barang->update($validatedData);
+        return new BarangResource($barang);
+    }
+
+    
+    public function deleteAPI($id){
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+        return (['success' => 'berhasil']);
+    }
+
+
+    
 }

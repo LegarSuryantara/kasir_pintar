@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TokoResource;
 use App\Models\Toko;
 use App\Models\User;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
+use App\Http\Resources\TokoResource;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Storage;
 
@@ -17,6 +17,7 @@ class TokoController extends Controller
 
     public function index()
     {
+
         $tokos = Toko::with(['user'])->get();
         return view('toko.toko', compact('tokos'));
 
@@ -26,6 +27,7 @@ class TokoController extends Controller
 
     public function create()
     {
+
         $users = user::all();
         return view('toko.tambah', compact('users'));
     }
