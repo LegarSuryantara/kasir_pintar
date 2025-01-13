@@ -65,6 +65,12 @@
                     <i class="fas fa-clock me-2"></i> Shift
                 </a>
             </li>
+            
+            <li class="nav-item mb-2">
+                <a href="{{ route('cashdrawer.index') }}" class="nav-link text-dark {{ request()->routeIs('cashdrawer.*') ? 'active' : '' }}">
+                    <i class="fas fa-cash-register me-2"></i> Cashdrawer
+                </a>
+            </li>
         </ul>
     </div>
 </div>

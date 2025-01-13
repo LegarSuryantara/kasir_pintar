@@ -16,9 +16,9 @@ class CashDrawerSeeder extends Seeder
         DB::table('cash_drawers')->insert([
             'toko_id' => 1,
             'kasir_id' => 1,
-            'shifts_id' => 1,
-            'pemasukan' => 1000000,
-            'pengeluaran' => 0,
+            'shift_id' => 1,
+            'uang_sebelum' => 1000000,
+            'uang_sesudah' => 2000000,
         ]);
     }
 }

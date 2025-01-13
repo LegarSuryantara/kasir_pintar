@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('toko_id')->constrained();
             $table->foreignId('kasir_id')->constrained();
-            $table->foreignId('shifts_id')->constrained();
-            $table->integer('pemasukan');
-            $table->integer('pengeluaran');
+            $table->foreignId('shift_id')->constrained();
+            $table->integer('uang_sebelum');
+            $table->integer('uang_sesudah');
             $table->timestamps();
         });
     }
