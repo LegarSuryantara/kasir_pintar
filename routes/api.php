@@ -45,3 +45,10 @@ Route::get('/diskon/{diskon}', [\App\Http\Controllers\DiskonController::class, '
 Route::post('/diskon', [\App\Http\Controllers\DiskonController::class, 'storeApi']);
 Route::put('/diskon/{diskon}', [\App\Http\Controllers\DiskonController::class, 'updateApi']);
 Route::delete('/diskon/{diskon}', [\App\Http\Controllers\DiskonController::class, 'deleteApi']);
+
+//supplier
+Route::get('/supplier', [\App\Http\Controllers\SupplierController::class, 'indexAPI']);
+Route::post('/supplier', [\App\Http\Controllers\SupplierController::class, 'storeAPI']);
+Route::get('/supplier/{supplier}', [\App\Http\Controllers\SupplierController::class, 'getSingleData']);
+Route::put('/supplier/{supplier}', [\App\Http\Controllers\SupplierController::class, 'updateAPI']);
+Route::delete('/supplier/{supplier}', [\App\Http\Controllers\SupplierController::class, 'deleteAPI']);
