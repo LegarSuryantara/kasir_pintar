@@ -43,13 +43,20 @@
         <h4 class="text-center">
             Tambah Barang
         </h4>
-        <form action="{{ route('toko.store') }}" method="post">
+        <form action="{{ route('toko.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="nama_toko">
                     Nama Toko
                 </label>
                 <input class="form-control" id="nama_toko" name="nama_toko" placeholder="Masukan Nama Toko" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image_toko">Upload Gambar</label>
+                <input class="form-control @error('image_toko') is-invalid @enderror" type="file" name="image_toko" id="image_toko" />
+                @error('image_toko')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">

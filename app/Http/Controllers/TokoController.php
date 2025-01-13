@@ -7,6 +7,7 @@ use App\Models\Toko;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
@@ -42,6 +43,17 @@ class TokoController extends Controller
         ]);
 
         $tokos = Toko::findOrFail($id);
+        
+        if ($request->hasFile('image_toko')) {
+            $image = $request->file('image_toko');
+            $filename = date("Y-m-d") . $image->getClientOriginalName();
+            $path = "toko_images/" . $filename;
+    
+            Storage::disk('public')->put($path, file_get_contents($image));
+            
+            $tokos->image_toko = $filename;
+        }
+
         $tokos->update([
             'nama_toko' => $request->nama_toko,
             'no_hp' => $request->no_hp,
@@ -68,10 +80,17 @@ class TokoController extends Controller
             'alamat' => 'required|string|max:255',
         ]);
 
+        $image = $request->file('image_toko');
+        $filename = date("Y-m-d").$image->getClientOriginalName();
+        $path = "toko_images/".$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($image));
+
         Toko::create([
             'nama_toko' => $request->nama_toko,
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
+            'image_toko' => $filename,
         ]);
 
         // json

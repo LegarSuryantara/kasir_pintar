@@ -20,6 +20,7 @@
                     <tr>
                         <th>No</th>
                         <th>Nama Toko</th>
+                        <th>Gambar Toko</th>
                         <th>No HP</th>
                         <th>Alamat</th>
                         <th>Aksi</th>
@@ -30,6 +31,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $toko->nama_toko }}</td>
+                        <td><img src="{{ asset('storage/toko_images/'.$toko->image_toko) }}" alt="" style="width: 100px; height: auto;"></td>
                         <td>{{ $toko->no_hp }}</td>
                         <td>{{ $toko->alamat }}</td>
                         <td>

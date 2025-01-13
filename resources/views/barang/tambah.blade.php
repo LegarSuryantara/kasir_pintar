@@ -43,13 +43,20 @@
         <h4 class="text-center">
             Tambah Barang
         </h4>
-        <form action="{{ route('barang.store') }}" method="post">
+        <form action="{{ route('barang.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="nama_barang">
                     Nama Barang
                 </label>
                 <input class="form-control" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image_barang">Upload Gambar</label>
+                <input class="form-control @error('image_barang') is-invalid @enderror" type="file" name="image_barang" id="image_barang" />
+                @error('image_barang')
+                <div class="invalid-feedback">{{ $message }}</div>
+                @enderror
             </div>
             <div class="mb-3">
                 <label class="form-label" for="kategori">

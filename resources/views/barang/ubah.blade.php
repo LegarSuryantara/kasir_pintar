@@ -43,7 +43,7 @@
         <h4 class="text-center">
             Ubah barang
         </h4>
-        <form action="{{ route('barang.update', $barang->id) }}" method="post">
+        <form action="{{ route('barang.update', $barang->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="nama_barang">
@@ -51,6 +51,19 @@
                 </label>
                 <input class="form-control" value="{{ old('nama_barang', $barang->nama_barang) }}" id="nama_barang" name="nama_barang" placeholder="Masukkan Nama Barang" type="text" />
             </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="image_barang">
+                    Gambar Barang
+                </label>
+                <input class="form-control" value="{{ old('image_barang', $barang->image_barang) }}" id="image_barang" name="image_barang" placeholder="Masukkan Gambar Barang" type="file" />
+                @if($barang->image_barang)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/barang_images/'.$barang->image_barang) }}" alt="Image Barang" class="img-fluid" width="150">
+                    </div>
+                @endif
+            </div>
+            
             <div class="mb-3">
                 <label class="form-label" for="kategori">
                     Kategori
@@ -71,7 +84,7 @@
                 <select class="form-select" id="toko" name="toko_id">
                     <option value="" selected disabled>Pilih Toko</option>
                     @foreach ($tokos as $toko)
-                    <option value="{{ $toko->id }}" {{ $toko->id == $diskon->toko_id ? 'selected' : '' }}>
+                    <option value="{{ $toko->id }}" {{ $toko->id == $barang->toko_id ? 'selected' : '' }}>
                             {{ $toko->nama_toko }}
                         </option>
                     @endforeach
