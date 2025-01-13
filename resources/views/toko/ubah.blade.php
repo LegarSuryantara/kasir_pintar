@@ -74,7 +74,21 @@
                 </label>
                 <input class="form-control" value="{{ old('alamat', $tokos->alamat) }}" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
-            
+
+            <div class="mb-3">
+                <label class="form-label" for="owner">
+                    owner/pemilik
+                </label>
+                <select class="form-select" id="owner" name="user_id">
+                    <option value="" selected disabled>Pilih owner</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ $user->id == $tokos->user_id ? 'selected' : '' }}>
+                            {{ $user->username }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" type="submit">
                     Save
