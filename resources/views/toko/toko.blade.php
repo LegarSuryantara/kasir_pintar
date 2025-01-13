@@ -22,6 +22,7 @@
                         <th>Nama Toko</th>
                         <th>No HP</th>
                         <th>Alamat</th>
+                        <th>Owner</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -32,6 +33,7 @@
                         <td>{{ $toko->nama_toko }}</td>
                         <td>{{ $toko->no_hp }}</td>
                         <td>{{ $toko->alamat }}</td>
+                        <td>{{ $toko->user->username}}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('toko.delete', $toko->id) }}" method="POST" class="d-inline">
                                 <a href="{{ route('toko.edit', $toko->id) }}" class="btn btn-sm btn-primary">

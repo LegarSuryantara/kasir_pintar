@@ -17,7 +17,7 @@ class TokoSeeder extends Seeder
             'nama_toko' => 'Selamet grosir',
             'no_hp' => '08769843568',
             'alamat' => 'Jonggol',
-            // 'user_id' => 1,
+            'user_id' => 1,
         ]);
     }
 }

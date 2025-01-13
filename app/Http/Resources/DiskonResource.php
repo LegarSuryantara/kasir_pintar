@@ -16,8 +16,18 @@ class DiskonResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nama_buku' => $this->nama_buku,
-            'nama_pengarang' =>$this->nama_pengarang,
+            'presentase' => $this->presentase,
+            'nama_diskon' => $this->nama_diskon,
+            'jumlah_barang' => $this->jumlah_barang,
+            'tanggal_mulai' => $this->tanggal_mulai,
+            'tanggal_akhir' => $this->tanggal_akhir,
+            'toko_id' => $this->toko_id
+
         ];
+
+        $table->date('tanggal_mulai');
+        $table->date('tanggal_akhir');
+        $table->timestamps();
+        $table->foreignId('toko_id')->constrained();
     }
 }

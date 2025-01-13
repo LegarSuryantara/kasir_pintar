@@ -63,6 +63,17 @@
                 </label>
                 <input class="form-control" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
+            <div class="mb-3">
+                <label class="form-label" for="owner">
+                    Owner
+                </label>
+                <select class="form-select" id="owner" name="user_id">
+                    <option value="" selected disabled>Pilih owner</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id }}">{{ $user->username}}</option>
+                    @endforeach
+                </select>
+            </div>
             <div class="d-flex justify-content-end">
                 <button class="btn btn-secondary me-2" type="reset">
                     Reset

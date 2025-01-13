@@ -19,7 +19,6 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_akhir');
             $table->timestamps();
-
             $table->foreignId('toko_id')->constrained();
         });
     }
