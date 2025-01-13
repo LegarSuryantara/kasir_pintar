@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
             DetailPengadaanSeeder::class,
             StokSeeder::class,
             ShiftSeeder::class,
-            
+            CashDrawerSeeder::class,
         ]);
     }
 }

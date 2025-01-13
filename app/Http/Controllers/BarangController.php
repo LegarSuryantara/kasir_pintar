@@ -10,6 +10,7 @@ use App\Models\Kategori;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Storage;
 
 class BarangController extends Controller
 {
@@ -41,13 +42,25 @@ class BarangController extends Controller
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
             'toko_id' => 'required|exists:tokos,id',
+            'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $barangs = Barang::findOrFail($id);
+        
+        if ($request->hasFile('image_barang')) {
+            $image = $request->file('image_barang');
+            $filename = date("Y-m-d") . $image->getClientOriginalName();
+            $path = "barang_images/" . $filename;
+    
+            Storage::disk('public')->put($path, file_get_contents($image));
+            
+            $barangs->image_barang = $filename;
+        }
+
         $barangs->update([
             'nama_barang' => $request->nama_barang,
             'kategori_id' => $request->kategori_id,
-            'toko_id' => $request->toko_id
+            'toko_id' => $request->toko_id,
         ]);
 
         return redirect()->route('barang.index')->with(['success' => 'berhasil']);
@@ -68,12 +81,20 @@ class BarangController extends Controller
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
             'toko_id' => 'required|exists:tokos,id',
+            'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
+
+        $image = $request->file('image_barang');
+        $filename = date("Y-m-d").$image->getClientOriginalName();
+        $path = "barang_images/".$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($image));
 
         Barang::create([
             'nama_barang' => $request->nama_barang,
             'kategori_id' => $request->kategori_id,
-            'toko_id' => $request->toko_id
+            'toko_id' => $request->toko_id,
+            'image_barang' => $filename,
         ]);
 
         //json

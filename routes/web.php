@@ -14,11 +14,12 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\DetailPengadaanController;
+use App\Http\Controllers\CashDrawerController;
 use App\Http\Controllers\TransaksiPenjualanController;
 
-Route::get('transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
-Route::post('transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
+
+Route::get('/transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
+Route::post('/transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
 Route::get('/transaksi-penjualan/create', [TransaksiPenjualanController::class, 'create'])->name('transaksi_penjualan.create');
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
 Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
@@ -75,6 +76,13 @@ Route::get('/supplier/create', [SupplierController::class, 'create'])->name('sup
 Route::post('/supplier/{supplier}', [SupplierController::class, 'update'])->name('supplier.update');
 Route::delete('/supplier/{supplier}', [SupplierController::class, 'delete'])->name('supplier.delete');
 Route::get('/supplier/{supplier}/edit', [SupplierController::class, 'edit'])->name('supplier.edit');
+
+Route::get('/cashdrawer', [CashDrawerController::class, 'index'])->name('cashdrawer.index');
+Route::post('/cashdrawers', [CashDrawerController::class, 'store'])->name('cashdrawer.store');
+Route::get('/cashdrawer/create', [CashDrawerController::class, 'create'])->name('cashdrawer.create');
+Route::post('/cashdrawer/{cashdrawer}', [CashDrawerController::class, 'update'])->name('cashdrawer.update');
+Route::delete('/cashdrawer/{cashdrawer}', [CashDrawerController::class, 'delete'])->name('cashdrawer.delete');
+Route::get('/cashdrawer/{cashdrawer}/edit', [CashDrawerController::class, 'edit'])->name('cashdrawer.edit');
 
 
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

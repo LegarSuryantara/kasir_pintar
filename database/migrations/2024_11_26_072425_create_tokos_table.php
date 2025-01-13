@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('tokos', function (Blueprint $table) {
             $table->id();
             $table->string('nama_toko');
-            $table->string('no_hp', 12);
+            $table->string('image_toko')->nullable();
+            $table->string('no_hp', length: 12);
             $table->string('alamat');
             $table->timestamps();
             $table->foreignId('user_id')->constrained();

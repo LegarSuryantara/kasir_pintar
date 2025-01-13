@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
@@ -12,6 +13,7 @@ class Toko extends Model
     use HasFactory;
     protected $fillable = [
         'nama_toko',
+        'image_toko',
         'no_hp',
         'alamat',
         'user_id',
@@ -49,8 +51,12 @@ class Toko extends Model
     {
         return $this->hasMany(Pengadaan::class);
     }
-    public function user():BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+    public function cashdrawer(): HasMany
+    {
+        return $this->hasMany(cashdrawer::class);
     }
 }

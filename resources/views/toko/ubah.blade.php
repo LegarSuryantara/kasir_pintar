@@ -43,13 +43,24 @@
         <h4 class="text-center">
             Ubah Toko
         </h4>
-        <form action="{{ route('toko.update', $tokos->id) }}" method="post">
+        <form action="{{ route('toko.update', $tokos->id) }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="nama_toko">
                     Nama Toko
                 </label>
-                <input class="form-control" value="{{ old('nama_toko', $tokos->nama_toko) }}" id="nama_barang" name="nama_toko" placeholder="Masukan Nama Toko" type="text" />
+                <input class="form-control" value="{{ old('nama_toko', $tokos->nama_toko) }}" id="nama_toko" name="nama_toko" placeholder="Masukan Nama Toko" type="text" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="image_toko">
+                    Gambar Toko
+                </label>
+                <input class="form-control" value="{{ old('image_toko', $tokos->image_toko) }}" id="image_toko" name="image_toko" placeholder="Masukkan Gambar Toko" type="file" />
+                @if($tokos->image_toko)
+                    <div class="mt-2">
+                        <img src="{{ asset('storage/toko_images/'.$tokos->image_toko) }}" alt="Image Toko" class="img-fluid" width="150">
+                    </div>
+                @endif
             </div>
             <div class="mb-3">
                 <label class="form-label" for="no_hp">
@@ -63,7 +74,21 @@
                 </label>
                 <input class="form-control" value="{{ old('alamat', $tokos->alamat) }}" id="alamat" name="alamat" placeholder="Masukan Alamat" type="text" />
             </div>
-            
+
+            <div class="mb-3">
+                <label class="form-label" for="owner">
+                    owner/pemilik
+                </label>
+                <select class="form-select" id="owner" name="user_id">
+                    <option value="" selected disabled>Pilih owner</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ $user->id == $tokos->user_id ? 'selected' : '' }}>
+                            {{ $user->username }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
             <div class="d-flex justify-content-end">
                 <button class="btn btn-primary" type="submit">
                     Save
