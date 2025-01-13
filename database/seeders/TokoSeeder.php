@@ -15,7 +15,8 @@ class TokoSeeder extends Seeder
     {
         DB::table('tokos')->insert([
             'nama_toko' => 'Selamet grosir',
-            'no_hp' => '08769843568',
+            'image_toko' => 'Gambar Toko',
+            'no_hp' => '087698435686',
             'alamat' => 'Jonggol',
             // 'user_id' => 1,
         ]);

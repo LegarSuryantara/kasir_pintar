@@ -12,6 +12,7 @@ class Barang extends Model
     use HasFactory;
     protected $fillable = [
         'nama_barang',
+        'image_barang',
         'kategori_id',
         'toko_id',
     ];
