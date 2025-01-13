@@ -53,4 +53,8 @@ class Toko extends Model
     {
         return $this->hasMany(User::class);
     }
+    public function cashdrawer(): HasMany
+    {
+        return $this->hasMany(cashdrawer::class);
+    }
 }

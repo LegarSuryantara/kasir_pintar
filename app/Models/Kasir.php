@@ -25,4 +25,10 @@ class Kasir extends Model
     {
         return $this->hasMany(Shift::class);
     }
+    public function cashdrawer(): HasMany
+    {
+        return $this->hasMany(cashdrawer::class);
+    }
+
+
 }
