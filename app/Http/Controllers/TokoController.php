@@ -40,6 +40,7 @@ class TokoController extends Controller
             'nama_toko' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
+            'image_toko' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $tokos = Toko::findOrFail($id);
@@ -78,6 +79,7 @@ class TokoController extends Controller
             'nama_toko' => 'required|string|max:255',
             'no_hp' => 'required|string|max:255',
             'alamat' => 'required|string|max:255',
+            'image_toko' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
 
         $image = $request->file('image_toko');
