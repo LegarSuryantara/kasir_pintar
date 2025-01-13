@@ -18,7 +18,7 @@ class TokoSeeder extends Seeder
             'image_toko' => 'Gambar Toko',
             'no_hp' => '087698435686',
             'alamat' => 'Jonggol',
-            // 'user_id' => 1,
+            'user_id' => 1,
         ]);
     }
 }

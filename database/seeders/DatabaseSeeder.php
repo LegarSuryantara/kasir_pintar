@@ -22,6 +22,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             SupplierSeeder::class,
+            UserSeeder::class,
             TokoSeeder::class,
             KategoriSeeder::class,
             KasirSeeder::class,
@@ -33,7 +34,7 @@ class DatabaseSeeder extends Seeder
             StokSeeder::class,
             ShiftSeeder::class,
             CashDrawerSeeder::class,
-            // UserSeeder::class
+
         ]);
     }
 }

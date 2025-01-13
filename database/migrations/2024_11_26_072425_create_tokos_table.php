@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('no_hp', length: 12);
             $table->string('alamat');
             $table->timestamps();
-            // $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained();
         });
     }
 
