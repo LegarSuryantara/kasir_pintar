@@ -11,7 +11,6 @@ class DetailPengadaanController extends Controller
         $detailpengadaan = DetailPengadaan::find(1);
         return $detailpengadaan->pengadaan->tanggal_pengadaan;  
     }
-
     public function get_all(){
         $detailpengadaan = DetailPengadaan::with('pengadaan')->get();
         return $detailpengadaan;

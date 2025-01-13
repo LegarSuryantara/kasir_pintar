@@ -76,21 +76,9 @@ class BarangController extends Controller
             'toko_id' => $request->toko_id
         ]);
 
-        //json
-        // $barang = Barang::create($validatedData);
-        // return new BarangResource($barang);
-
         return redirect()->route('barang.index')->with(['success' => 'berhasil']);
         
     }
 
-    // public function barang(){   
-    //     $barang = Barang::find(1);
-    //     return $barang;
-    // }
-    // public function get_all(){
-    //     $barang = Barang::with('kategori')->get();
-    //     return $barang;
-    // }
 
 }

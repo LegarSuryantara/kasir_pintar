@@ -10,7 +10,7 @@ use Illuminate\Http\RedirectResponse;
 
 class PajakController extends Controller
 {
-
+    
     public function index()
     {
         $pajaks = Pajak::with(['toko'])->get();

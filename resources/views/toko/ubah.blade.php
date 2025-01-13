@@ -58,6 +58,19 @@
                 <input class="form-control" value="{{ old('no_hp', $tokos->no_hp) }}" id="no_hp" name="no_hp" placeholder="Masukan No Handpone" type="text" />
             </div>
             <div class="mb-3">
+                <label class="form-label" for="owner">
+                    Nama Owner
+                </label>
+                <select class="form-select" id="owner" name="user_id">
+                    <option value="" selected disabled>Pilih Owner</option>
+                    @foreach ($users as $user)
+                    <option value="{{ $user->id }}" {{ $user->id == $tokos->user_id ? 'selected' : '' }}>
+                            {{ $user->username }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="mb-3">
                 <label class="form-label" for="alamat">
                     Alamat
                 </label>

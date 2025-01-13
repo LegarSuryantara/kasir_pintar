@@ -17,7 +17,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailPengadaanController;
 use App\Http\Controllers\TransaksiPenjualanController;
 
-Route::get('transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
+Route::get('/transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
 Route::post('transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
 Route::get('/transaksi-penjualan/create', [TransaksiPenjualanController::class, 'create'])->name('transaksi_penjualan.create');
 Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
