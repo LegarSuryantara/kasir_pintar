@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('nama_barang');
             $table->string('image_barang')->nullable();
+            $table->integer('harga_jual')->nullable();
             $table->foreignId('kategori_id')->constrained();
             $table->foreignId('toko_id')->constrained();
             $table->timestamps();
