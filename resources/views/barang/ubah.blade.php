@@ -63,7 +63,13 @@
                     </div>
                 @endif
             </div>
-            
+
+            <div class="mb-3">
+                <label class="form-label" for="harga_jual">
+                    Harga Jual
+                </label>
+                <input class="form-control" value="{{ old('harga_jual', $barang->harga_jual) }}" id="harga_jual" name="harga_jual" placeholder="Masukkan harga jual barang" type="number" />
+            </div>
             <div class="mb-3">
                 <label class="form-label" for="kategori">
                     Kategori

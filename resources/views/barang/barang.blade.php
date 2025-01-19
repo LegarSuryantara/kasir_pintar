@@ -21,6 +21,7 @@
                         <th>No</th>
                         <th>Nama Barang</th>
                         <th>Gambar Barang</th>
+                        <th>Harga Jual</th>
                         <th>Kategori</th>
                         <th>Toko</th>
                         <th>Aksi</th>
@@ -32,6 +33,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $barang->nama_barang }}</td>
                         <td><img src="{{ asset('storage/barang_images/'.$barang->image_barang) }}" alt="" style="width: 100px; height: auto;"></td>
+                        <td>{{ $barang->harga_jual}}</td>
                         <td>{{ $barang->kategori->kategori }}</td>
                         <td>{{ $barang->toko->nama_toko }}</td>
                         <td>

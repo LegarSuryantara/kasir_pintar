@@ -16,6 +16,7 @@ class BarangSeeder extends Seeder
         DB::table('barangs')->insert([
             'nama_barang' => 'mie goreng',
             'image_barang' => 'mie_goreng.jpg',
+            'harga_jual' => 20000,
             'kategori_id' => 1,
             'toko_id' => 1,
         ]);

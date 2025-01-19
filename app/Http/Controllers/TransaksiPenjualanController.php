@@ -19,7 +19,7 @@ class TransaksiPenjualanController extends Controller
      */
     public function index()
     {
-        $transaksiPenjualans = TransaksiPenjualan::with('customer', 'toko', 'kasir', 'diskon', 'pajak')->get();
+        $transaksiPenjualans = TransaksiPenjualan::with('toko', 'kasir', 'diskon', 'pajak')->get();
         return response()->json($transaksiPenjualans);
     }
 
@@ -33,13 +33,12 @@ class TransaksiPenjualanController extends Controller
     {
         // Validasi input
         $request->validate([
-            'id_customer' => 'required|exists:customers,id',
-            'id_toko' => 'required|exists:tokos,id',
-            'id_kasir' => 'required|exists:kasirs,id',
-            'id_diskon' => 'nullable|exists:diskons,id',
-            'id_pajak' => 'nullable|exists:pajaks,id',
+            'toko_id' => 'required|exists:tokos,id',
+            'kasir_id' => 'required|exists:kasirs,id',
+            'diskon_id' => 'nullable|exists:diskons,id',
+            'pajak_id' => 'nullable|exists:pajaks,id',
             'subtotal' => 'required|numeric',
-            'total_penjualan' => 'required|numeric',
+            'total_harga' => 'required|numeric',
             'jumlah_barang' => 'required|integer',
             'tanggal_penjualan' => 'required|date',
         ]);
@@ -47,12 +46,12 @@ class TransaksiPenjualanController extends Controller
         // Membuat transaksi penjualan baru
         $transaksiPenjualan = TransaksiPenjualan::create([
             'id_customer' => $request->id_customer,
-            'id_toko' => $request->id_toko,
-            'id_kasir' => $request->id_kasir,
-            'id_diskon' => $request->id_diskon,
-            'id_pajak' => $request->id_pajak,
+            'toko_id' => $request->toko_id,
+            'kasir_id' => $request->kasir_id,
+            'diskon_id' => $request->diskon_id,
+            'pajak_id' => $request->pajak_id,
             'subtotal' => $request->subtotal,
-            'total_penjualan' => $request->total_penjualan,
+            'total_harga' => $request->total_harga,
             'jumlah_barang' => $request->jumlah_barang,
             'tanggal_penjualan' => $request->tanggal_penjualan,
         ]);
@@ -89,12 +88,12 @@ class TransaksiPenjualanController extends Controller
         // Validasi input
         $request->validate([
             'id_customer' => 'required|exists:customers,id',
-            'id_toko' => 'required|exists:tokos,id',
-            'id_kasir' => 'required|exists:kasirs,id',
-            'id_diskon' => 'nullable|exists:diskons,id',
-            'id_pajak' => 'nullable|exists:pajaks,id',
+            'toko_id' => 'required|exists:tokos,id',
+            'kasir_id' => 'required|exists:kasirs,id',
+            'diskon_id' => 'nullable|exists:diskons,id',
+            'pajak_id' => 'nullable|exists:pajaks,id',
             'subtotal' => 'required|numeric',
-            'total_penjualan' => 'required|numeric',
+            'total_harga' => 'required|numeric',
             'jumlah_barang' => 'required|integer',
             'tanggal_penjualan' => 'required|date',
         ]);
@@ -109,12 +108,12 @@ class TransaksiPenjualanController extends Controller
         // Memperbarui data transaksi penjualan
         $transaksiPenjualan->update([
             'id_customer' => $request->id_customer,
-            'id_toko' => $request->id_toko,
-            'id_kasir' => $request->id_kasir,
-            'id_diskon' => $request->id_diskon,
-            'id_pajak' => $request->id_pajak,
+            'toko_id' => $request->toko_id,
+            'kasir_id' => $request->kasir_id,
+            'diskon_id' => $request->diskon_id,
+            'pajak_id' => $request->pajak_id,
             'subtotal' => $request->subtotal,
-            'total_penjualan' => $request->total_penjualan,
+            'total_harga' => $request->total_harga,
             'jumlah_barang' => $request->jumlah_barang,
             'tanggal_penjualan' => $request->tanggal_penjualan,
         ]);
@@ -148,12 +147,11 @@ class TransaksiPenjualanController extends Controller
      */
     public function create()
     {
-        $customers = Customer::all();
         $tokos = Toko::all();
         $kasirs = Kasir::all();
         $diskons = Diskon::all();
         $pajaks = Pajak::all();
 
-        return view('transaksi-penjualan.create', compact('customers', 'tokos', 'kasirs', 'diskons', 'pajaks'));
+        return view('transaksi-penjualan.create', compact('tokos', 'kasirs', 'diskons', 'pajaks'));
     }
 }

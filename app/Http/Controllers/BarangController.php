@@ -18,8 +18,6 @@ class BarangController extends Controller
     {
         $barangs = Barang::with(['kategori', 'toko'])->get();
         return view('barang.barang', compact('barangs'));
-        // json
-        // return BarangResource::collection(Barang::get());
     }
 
     public function create()
@@ -41,6 +39,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
+            'harga_jual' => 'required',
             'toko_id' => 'required|exists:tokos,id',
             'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -59,6 +58,8 @@ class BarangController extends Controller
 
         $barangs->update([
             'nama_barang' => $request->nama_barang,
+            'image_barang' => $request->image_barang,
+            'harga_jual' => $request->harga_jual,
             'kategori_id' => $request->kategori_id,
             'toko_id' => $request->toko_id,
         ]);
@@ -80,6 +81,7 @@ class BarangController extends Controller
        $validatedData= $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
+            'harga_jual' => 'required',
             'toko_id' => 'required|exists:tokos,id',
             'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -93,6 +95,7 @@ class BarangController extends Controller
         Barang::create([
             'nama_barang' => $request->nama_barang,
             'kategori_id' => $request->kategori_id,
+            'harga_jual' => $request->harga_jual,
             'toko_id' => $request->toko_id,
             'image_barang' => $filename,
         ]);
@@ -157,7 +160,5 @@ class BarangController extends Controller
         $barang->delete();
         return (['success' => 'berhasil']);
     }
-
-
     
 }

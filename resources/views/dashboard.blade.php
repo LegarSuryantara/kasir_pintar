@@ -6,12 +6,6 @@
 <div class="container">
     <h4 class="mb-4">Dashboard</h4>
     
-    <!-- Navigasi Transaksi Penjualan -->
-    <div class="mb-4">
-        <a href="{{ route('transaksi_penjualan.create') }}" class="btn btn-primary">
-            Tambah Transaksi Penjualan
-        </a>
-    </div>
 
     <div class="row">
         <div class="col-md-3 mb-4">
