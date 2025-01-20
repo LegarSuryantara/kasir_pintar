@@ -13,13 +13,15 @@ return new class extends Migration
     {
         Schema::create('transaksi_penjualans', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('toko_id');
-            $table->foreignID('kasir_id');
-            $table->foreignID('diskon_id');
-            $table->foreignID('pajak_id');
-            $table->integer('subtotal');
-            $table->integer('total_penjualan');
+
+            $table->foreignId('toko_id')->constrained();
+            $table->foreignId('kasir_id')->constrained();
+            $table->foreignId('pajak_id')->constrained();
+            $table->foreignId('diskon_id')->constrained();
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('total_harga', 10, 2);
             $table->integer('jumlah_barang');
+            $table->string('metode_pembayaran');
             $table->date('tanggal_penjualan');
             $table->timestamps();
         });

@@ -18,8 +18,6 @@ class BarangController extends Controller
     {
         $barangs = Barang::with(['kategori', 'toko'])->get();
         return view('barang.barang', compact('barangs'));
-        // json
-        // return BarangResource::collection(Barang::get());
     }
 
     public function create()
@@ -41,6 +39,7 @@ class BarangController extends Controller
         $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
+            'harga_jual' => 'required',
             'toko_id' => 'required|exists:tokos,id',
             'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -59,6 +58,8 @@ class BarangController extends Controller
 
         $barangs->update([
             'nama_barang' => $request->nama_barang,
+            'image_barang' => $request->image_barang,
+            'harga_jual' => $request->harga_jual,
             'kategori_id' => $request->kategori_id,
             'toko_id' => $request->toko_id,
         ]);
@@ -80,6 +81,7 @@ class BarangController extends Controller
        $validatedData= $request->validate([
             'nama_barang' => 'required|string|max:255',
             'kategori_id' => 'required|exists:kategoris,id',
+            'harga_jual' => 'required',
             'toko_id' => 'required|exists:tokos,id',
             'image_barang' => 'required|image|mimes:jpg,jpeg,png|max:2048',
         ]);
@@ -93,6 +95,7 @@ class BarangController extends Controller
         Barang::create([
             'nama_barang' => $request->nama_barang,
             'kategori_id' => $request->kategori_id,
+            'harga_jual' => $request->harga_jual,
             'toko_id' => $request->toko_id,
             'image_barang' => $filename,
         ]);
@@ -105,13 +108,57 @@ class BarangController extends Controller
         
     }
 
-    // public function barang(){   
-    //     $barang = Barang::find(1);
-    //     return $barang;
-    // }
-    // public function get_all(){
-    //     $barang = Barang::with('kategori')->get();
-    //     return $barang;
-    // }
 
+
+    #API
+
+    public function indexAPI()
+    {
+        Barang::with(['kategori', 'toko'])->get();
+        return BarangResource::collection(Barang::get());
+    }
+    public function getSingleData($id)
+    {
+        $barang = Barang::with(['kategori', 'toko'])->findOrFail($id);
+    
+        $data = [
+            'barang' => new BarangResource($barang)
+        ];
+    
+        return $data; 
+    }
+
+    
+    public function storeAPI(Request $request) 
+    {
+        
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'toko_id' => 'required|exists:tokos,id',
+        ]);
+        $barang = Barang::create($validatedData);
+        return new BarangResource($barang);
+    }
+
+    public function updateAPI(Request $request, $id)
+    {
+        $validatedData = $request->validate([
+            'nama_barang' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategoris,id',
+            'toko_id' => 'required|exists:tokos,id',
+        ]);
+    
+        $barang = Barang::findOrFail($id);
+        $barang->update($validatedData);
+        return new BarangResource($barang);
+    }
+
+    
+    public function deleteAPI($id){
+        $barang = Barang::findOrFail($id);
+        $barang->delete();
+        return (['success' => 'berhasil']);
+    }
+    
 }

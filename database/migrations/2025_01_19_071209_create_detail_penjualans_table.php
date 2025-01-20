@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('diskons', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_diskon');
+        Schema::create('detail_penjualans', function (Blueprint $table) {
+            $table->id(); // Auto-increment
+            $table->foreignId('transaksi_penjualan_id')->constrained();
+            $table->foreignId('barang_id')->constrained();
             $table->integer('jumlah_barang');
-            $table->integer('presentase');
-            $table->date('tanggal_mulai');
-            $table->date('tanggal_akhir');
+            $table->decimal('harga_satuan', 10, 2);
+            $table->decimal('total_harga', 10, 2);
             $table->timestamps();
-            $table->foreignId('toko_id')->constrained();
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('diskons');
+        Schema::dropIfExists('detail_penjualans');
     }
 };

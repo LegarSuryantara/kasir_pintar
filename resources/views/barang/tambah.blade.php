@@ -59,6 +59,12 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label class="form-label" for="harga_jual">
+                    Harga Jual
+                </label>
+                <input class="form-control" id="harga_jual" name="harga_jual" placeholder="Masukkan harga jual barang" type="number" />
+            </div>
+            <div class="mb-3">
                 <label class="form-label" for="kategori">
                     Kategori
                 </label>

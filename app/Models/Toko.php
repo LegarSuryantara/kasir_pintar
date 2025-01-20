@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Toko extends Model
 {
@@ -49,9 +51,9 @@ class Toko extends Model
     {
         return $this->hasMany(Pengadaan::class);
     }
-    public function user(): HasMany
+    public function user(): BelongsTo
     {
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
     public function cashdrawer(): HasMany
     {

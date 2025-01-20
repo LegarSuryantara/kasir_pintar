@@ -19,7 +19,7 @@ class TransaksiPenjualanController extends Controller
     public function index()
     {
         $transaksiPenjualans = TransaksiPenjualan::with('toko', 'kasir', 'diskon', 'pajak')->get();
-        return view('transaksi-penjualan.index', compact('transaksiPenjualans'));
+        return response()->json($transaksiPenjualans);
     }
 
     /**
@@ -37,13 +37,26 @@ class TransaksiPenjualanController extends Controller
             'diskon_id' => 'nullable|exists:diskons,id',
             'pajak_id' => 'nullable|exists:pajaks,id',
             'subtotal' => 'required|numeric',
-            'total_penjualan' => 'required|numeric',
+            'total_harga' => 'required|numeric',
             'jumlah_barang' => 'required|integer',
             'tanggal_penjualan' => 'required|date',
         ]);
 
         // Membuat transaksi penjualan baru
+
         TransaksiPenjualan::create($request->all());
+        $transaksiPenjualan = TransaksiPenjualan::create([
+            'id_customer' => $request->id_customer,
+            'toko_id' => $request->toko_id,
+            'kasir_id' => $request->kasir_id,
+            'diskon_id' => $request->diskon_id,
+            'pajak_id' => $request->pajak_id,
+            'subtotal' => $request->subtotal,
+            'total_harga' => $request->total_harga,
+            'jumlah_barang' => $request->jumlah_barang,
+            'tanggal_penjualan' => $request->tanggal_penjualan,
+        ]);
+
 
         return redirect()
             ->route('transaksi_penjualan.index')
@@ -73,12 +86,13 @@ class TransaksiPenjualanController extends Controller
     {
         // Validasi input
         $request->validate([
-            'id_toko' => 'required|exists:tokos,id',
-            'id_kasir' => 'required|exists:kasirs,id',
-            'id_diskon' => 'nullable|exists:diskons,id',
-            'id_pajak' => 'nullable|exists:pajaks,id',
+            
+            'toko_id' => 'required|exists:tokos,id',
+            'kasir_id' => 'required|exists:kasirs,id',
+            'diskon_id' => 'nullable|exists:diskons,id',
+            'pajak_id' => 'nullable|exists:pajaks,id',
             'subtotal' => 'required|numeric',
-            'total_penjualan' => 'required|numeric',
+            'total_harga' => 'required|numeric',
             'jumlah_barang' => 'required|integer',
             'tanggal_penjualan' => 'required|date',
         ]);
@@ -92,12 +106,12 @@ class TransaksiPenjualanController extends Controller
 
         // Memperbarui data transaksi penjualan
         $transaksiPenjualan->update([
-            'id_toko' => $request->id_toko,
-            'id_kasir' => $request->id_kasir,
-            'id_diskon' => $request->id_diskon,
-            'id_pajak' => $request->id_pajak,
+            'toko_id' => $request->toko_id,
+            'kasir_id' => $request->kasir_id,
+            'diskon_id' => $request->diskon_id,
+            'pajak_id' => $request->pajak_id,
             'subtotal' => $request->subtotal,
-            'total_penjualan' => $request->total_penjualan,
+            'total_harga' => $request->total_harga,
             'jumlah_barang' => $request->jumlah_barang,
             'tanggal_penjualan' => $request->tanggal_penjualan,
         ]);
@@ -137,6 +151,7 @@ class TransaksiPenjualanController extends Controller
         $pajaks = Pajak::all();
 
         return view('transaksi-penjualan.create', compact('tokos', 'kasirs', 'diskons', 'pajaks'));
+
     }
 
     /**
@@ -153,5 +168,6 @@ class TransaksiPenjualanController extends Controller
         return redirect()
             ->route('transaksi_penjualan.index')
             ->with('success', 'Transaksi Penjualan berhasil dihapus');
+
     }
 }

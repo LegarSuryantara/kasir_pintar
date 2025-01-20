@@ -79,4 +79,53 @@ class KategoriController extends Controller
         $kategori = Kategori::with('toko')->get();
         return $kategori;
     }
+
+     #API
+     public function indexAPI()
+     {
+         Kategori::with(['toko'])->get();
+         return KategoriResource::collection(Kategori::get());
+     }
+
+     public function getSingleData($id)
+     {
+         $kategori = Kategori::with(['toko'])->findOrFail($id);
+     
+         $data = [
+             'kategori' => new KategoriResource($kategori)
+         ];
+     
+         return $data; 
+     }
+ 
+     
+     public function storeAPI(Request $request) 
+     {
+         
+         $validatedData = $request->validate([
+            'kategori' => 'required|string|max:255',
+            'toko_id' => 'required|exists:tokos,id',
+         ]);
+         $kategori = Kategori::create($validatedData);
+         return new KategoriResource($kategori);
+     }
+ 
+     public function updateAPI(Request $request, $id)
+     {
+         $validatedData = $request->validate([
+            'kategori' => 'required|string|max:255',
+            'toko_id' => 'required|exists:tokos,id',
+         ]);
+     
+         $kategori = Kategori::findOrFail($id);
+         $kategori->update($validatedData);
+         return new KategoriResource($kategori);
+     }
+ 
+     
+     public function deleteAPI($id){
+         $kategori = Kategori::findOrFail($id);
+         $kategori->delete();
+         return (['success' => 'berhasil']);
+     }
 }
