@@ -65,7 +65,7 @@
                 <option value="">Pilih Pajak</option>
                 @foreach($pajaks as $pajak)
                     <option value="{{ $pajak->id }}" {{ old('pajak_id') == $pajak->id ? 'selected' : '' }}>
-                        {{ $pajak->id }}
+                        {{ $pajak->presentase }}%
                     </option>
                 @endforeach
             </select>
@@ -112,4 +112,4 @@
         </div>
     </form>
 </div>
-@endsection
+@endsection 

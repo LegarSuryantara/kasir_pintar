@@ -70,6 +70,11 @@
                 <a href="{{ route('cashdrawer.index') }}" class="nav-link text-dark {{ request()->routeIs('cashdrawer.*') ? 'active' : '' }}">
                     <i class="fas fa-cash-register me-2"></i> Cashdrawer
                 </a>
+            </li>   
+            <li class="nav-item mb-2">
+                <a href="{{ route('logout') }}" class="nav-link text-dark">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
             </li>
         </ul>
     </div>

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('transaksi_penjualans', function (Blueprint $table) {
             $table->id();
+
             $table->foreignId('toko_id')->constrained();
             $table->foreignId('kasir_id')->constrained();
             $table->foreignId('pajak_id')->constrained();

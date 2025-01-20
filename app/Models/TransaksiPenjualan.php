@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class TransaksiPenjualan extends Model
 {
     use HasFactory;
-
     protected $fillable = [
         'toko_id',
         'kasir_id',
@@ -19,7 +18,7 @@ class TransaksiPenjualan extends Model
         'total_harga',
         'metode_pembayaran',
         'jumlah_barang',
-        'tanggal_penjualan',
+        'tanggal_penjualan'
     ];
 
     public $timestamps = true;
@@ -27,26 +26,34 @@ class TransaksiPenjualan extends Model
 
     public function toko()
     {
+
         return $this->belongsTo(Toko::class);
+
     }
 
     public function kasir()
     {
+
         return $this->belongsTo(Kasir::class);
+
     }
 
     public function diskon()
     {
+
         return $this->belongsTo(Diskon::class);
+
     }
 
     public function pajak()
     {
+
         return $this->belongsTo(Pajak::class);
     }
 
     public function detailPenjualan()
     {
         return $this->hasMany(DetailPenjualan::class);
+
     }
 }

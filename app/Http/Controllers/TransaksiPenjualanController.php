@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\TransaksiPenjualan;
-use App\Models\Customer; // Tambahkan use statement untuk model Customer
 use App\Models\Toko; // Tambahkan use statement untuk model Toko
 use App\Models\Kasir; // Tambahkan use statement untuk model Kasir
 use App\Models\Diskon; // Tambahkan use statement untuk model Diskon
@@ -44,6 +43,8 @@ class TransaksiPenjualanController extends Controller
         ]);
 
         // Membuat transaksi penjualan baru
+
+        TransaksiPenjualan::create($request->all());
         $transaksiPenjualan = TransaksiPenjualan::create([
             'id_customer' => $request->id_customer,
             'toko_id' => $request->toko_id,
@@ -56,7 +57,10 @@ class TransaksiPenjualanController extends Controller
             'tanggal_penjualan' => $request->tanggal_penjualan,
         ]);
 
-        return response()->json($transaksiPenjualan, 201);
+
+        return redirect()
+            ->route('transaksi_penjualan.index')
+            ->with('success', 'Transaksi Penjualan berhasil ditambahkan');
     }
 
     /**
@@ -67,13 +71,8 @@ class TransaksiPenjualanController extends Controller
      */
     public function show($id)
     {
-        $transaksiPenjualan = TransaksiPenjualan::with('customer', 'toko', 'kasir', 'diskon', 'pajak')->find($id);
-
-        if (!$transaksiPenjualan) {
-            return response()->json(['message' => 'Transaksi tidak ditemukan'], 404);
-        }
-
-        return response()->json($transaksiPenjualan);
+        $transaksi = TransaksiPenjualan::with('toko', 'kasir', 'diskon', 'pajak')->findOrFail($id);
+        return view('transaksi-penjualan.show', compact('transaksi'));
     }
 
     /**
@@ -87,7 +86,7 @@ class TransaksiPenjualanController extends Controller
     {
         // Validasi input
         $request->validate([
-            'id_customer' => 'required|exists:customers,id',
+            
             'toko_id' => 'required|exists:tokos,id',
             'kasir_id' => 'required|exists:kasirs,id',
             'diskon_id' => 'nullable|exists:diskons,id',
@@ -107,7 +106,6 @@ class TransaksiPenjualanController extends Controller
 
         // Memperbarui data transaksi penjualan
         $transaksiPenjualan->update([
-            'id_customer' => $request->id_customer,
             'toko_id' => $request->toko_id,
             'kasir_id' => $request->kasir_id,
             'diskon_id' => $request->diskon_id,
@@ -153,5 +151,23 @@ class TransaksiPenjualanController extends Controller
         $pajaks = Pajak::all();
 
         return view('transaksi-penjualan.create', compact('tokos', 'kasirs', 'diskons', 'pajaks'));
+
+    }
+
+    /**
+     * Menghapus transaksi penjualan.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function delete($id)
+    {
+        $transaksiPenjualan = TransaksiPenjualan::findOrFail($id);
+        $transaksiPenjualan->delete();
+
+        return redirect()
+            ->route('transaksi_penjualan.index')
+            ->with('success', 'Transaksi Penjualan berhasil dihapus');
+
     }
 }
