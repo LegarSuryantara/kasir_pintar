@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             StokSeeder::class,
             ShiftSeeder::class,
             CashDrawerSeeder::class,
+            TransaksiPenjualanSeeder::class,                         
             // UserSeeder::class
         ]);
     }

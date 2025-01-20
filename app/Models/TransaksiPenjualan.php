@@ -9,29 +9,17 @@ class TransaksiPenjualan extends Model
 {
     use HasFactory;
 
-    // Nama tabel di database
-    protected $table = 'transaksi_penjualan';
-
-    // Primary key
-    protected $primaryKey = 'id_penjualan';
-
-    // Tipe primary key (non-incrementing jika bukan auto_increment)
-    public $incrementing = true;
-
-    // Tipe data primary key
-    protected $keyType = 'bigint';
 
     // Kolom yang dapat diisi melalui mass assignment
     protected $fillable = [
-        'id_customer',
-        'id_toko',
-        'id_kasir',
-        'id_diskon',
-        'id_pajak',
+        'toko_id',
+        'kasir_id',
+        'diskon_id',
+        'pajak_id',
         'subtotal',
         'total_penjualan',
         'jumlah_barang',
-        'tanggal_penjualan',
+        'tanggal_penjualan'
     ];
 
     // Timestamps (created_at dan updated_at) secara otomatis diaktifkan
@@ -50,7 +38,7 @@ class TransaksiPenjualan extends Model
      */
     public function toko()
     {
-        return $this->belongsTo(Toko::class, 'id_toko', 'id');
+        return $this->belongsTo(Toko::class, 'toko_id', 'id');
     }
 
     /**
@@ -58,7 +46,7 @@ class TransaksiPenjualan extends Model
      */
     public function kasir()
     {
-        return $this->belongsTo(Kasir::class, 'id_kasir', 'id');
+        return $this->belongsTo(Kasir::class, 'kasir_id', 'id');
     }
 
     /**
@@ -66,7 +54,7 @@ class TransaksiPenjualan extends Model
      */
     public function diskon()
     {
-        return $this->belongsTo(Diskon::class, 'id_diskon', 'id');
+        return $this->belongsTo(Diskon::class, 'diskon_id', 'id');
     }
 
     /**
@@ -74,6 +62,6 @@ class TransaksiPenjualan extends Model
      */
     public function pajak()
     {
-        return $this->belongsTo(Pajak::class, 'id_pajak', 'id');
+        return $this->belongsTo(Pajak::class, 'pajak_id', 'id');
     }
 }
