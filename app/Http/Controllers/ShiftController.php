@@ -76,6 +76,7 @@ class ShiftController extends Controller
         Shift::create([
             'kasir_id' => $request->kasir_id,
             'toko_id' => $request->toko_id,
+            'tanggal' => now(),
             'waktu_masuk' => $request->waktu_masuk,
             'waktu_keluar' => $request->waktu_keluar,
         ]);

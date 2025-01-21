@@ -95,7 +95,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-
 // dashboard Kasir
 Route::get('/dashboardKasir', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
 Route::get('/listItems', [ItemsListController::class, 'index'])->name('addItems.index');
@@ -104,4 +103,7 @@ Route::get('/dashboardKasir/remove/{id}', [DashboardKasirController::class, 'rem
 Route::post('/dashboardKasir/bayar', [DashboardKasirController::class, 'bayar'])->name('dashboardKasir.bayar');
 Route::get('/dashboardKasir/batal', [DashboardKasirController::class, 'batal'])->name('dashboardKasir.batal');
 Route::get('/kasirTable', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
+Route::get('/shiftKasir', [ShiftKasirController::class, 'showShiftForm'])->name('shift.form');
+Route::post('/shiftKasir/start', [ShiftKasirController::class, 'startShift'])->name('shift.start');
+Route::post('/shiftKasir/end', [ShiftKasirController::class, 'endShift'])->name('shift.end');
 

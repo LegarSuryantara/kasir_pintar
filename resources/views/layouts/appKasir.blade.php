@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>@yield('title', 'Kasir Pintar')</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -146,7 +147,56 @@
             background-color: #007bff;
             color: #fff;
         }
-        
+
+        .shift-header {
+            background-color: #dfe6ed;
+            padding: 20px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .shift-header h1 {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .shift-header p {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .shift-row {
+            background-color: #ffffff;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #e0e0e0;
+        }
+        .shift-row div {
+            display: flex;
+            align-items: center;
+        }
+        .shift-row div span {
+            margin-right: 10px;
+            font-size: 16px;
+        }
+        .shift-row div button {
+            margin-left: 10px;
+        }
+        .shift-row .date {
+            font-size: 14px;
+            color: #6c757d;
+        }
+        .shift-row .time {
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .shift-row .time-end {
+            margin-left: 20px;
+        }
+        .shift-row .btn {
+            width: 60px;
+        }
     </style>
     @yield('additional_css')
 </head>
