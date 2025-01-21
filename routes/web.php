@@ -41,9 +41,9 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     // Resourceful Routes
-    Route::get('/transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
-    Route::post('/transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
-    Route::get('/transaksi-penjualan/create', [TransaksiPenjualanController::class, 'create'])->name('transaksi_penjualan.create');
+    Route::get('/transaksipenjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksipenjualan.index');
+    // Route::post('/transaksipenjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksipenjualan.store');
+    // Route::get('/transaksipenjualan/create', [TransaksiPenjualanController::class, 'create'])->name('transaksipenjualan.create');
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori.index');
     Route::get('/kategori/create', [KategoriController::class, 'create'])->name('kategori.create');
     Route::post('/kategori', [KategoriController::class, 'store'])->name('kategori.store');

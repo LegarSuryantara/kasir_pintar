@@ -70,6 +70,10 @@
                 <a href="{{ route('cashdrawer.index') }}" class="nav-link text-dark {{ request()->routeIs('cashdrawer.*') ? 'active' : '' }}">
                     <i class="fas fa-cash-register me-2"></i> Cashdrawer
                 </a>
+            <li class="nav-item mb-2">
+                <a href="{{ route('transaksipenjualan.index') }}" class="nav-link text-dark {{ request()->routeIs('transaksipenjualan.*') ? 'active' : '' }}">
+                <i class="fa-solid fa-clock-rotate-left me-2"></i> History Penjualan
+                </a>
             </li>   
             <li class="nav-item mb-2">
                 <a href="{{ route('logout') }}" class="nav-link text-dark">
