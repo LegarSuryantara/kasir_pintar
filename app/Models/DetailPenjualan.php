@@ -12,7 +12,7 @@ class DetailPenjualan extends Model
 
     protected $fillable = [
         'transaksi_penjualan_id', 'barang_id', 'jumlah_barang', 
-        'harga_satuan', 'total_harga'
+        'harga_satuan','total_harga'
     ];
 
     public function transaksiPenjualan():BelongsTo

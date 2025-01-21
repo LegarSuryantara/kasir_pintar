@@ -119,7 +119,7 @@ class DashboardKasirController extends Controller
 
             $transaksi = TransaksiPenjualan::create([
                 'toko_id' => 1,
-                'kasir_id' => 1,
+                'kasir_id' => \Illuminate\Support\Facades\Auth::user()->id,
                 'diskon_id' => 1,
                 'pajak_id' => 1, 
                 'subtotal' => $subtotal,
