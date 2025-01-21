@@ -46,19 +46,25 @@ class BarangController extends Controller
 
         $barangs = Barang::findOrFail($id);
         
-        if ($request->hasFile('image_barang')) {
-            $image = $request->file('image_barang');
-            $filename = date("Y-m-d") . $image->getClientOriginalName();
-            $path = "barang_images/" . $filename;
+        // if ($request->hasFile('image_barang')) {
+        //     $image = $request->file('image_barang');
+        //     $filename = date("Y-m-d") . $image->getClientOriginalName();
+        //     $path = "barang_images/" . $filename;
     
-            Storage::disk('public')->put($path, file_get_contents($image));
+        //     Storage::disk('public')->put($path, file_get_contents($image));
             
-            $barangs->image_barang = $filename;
-        }
+        //     $barangs->image_barang = $filename;
+        // }
+
+        $image = $request->file('image_barang');
+        $filename = date("Y-m-d").$image->getClientOriginalName();
+        $path = "barang_images/".$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($image));
 
         $barangs->update([
             'nama_barang' => $request->nama_barang,
-            'image_barang' => $request->image_barang,
+            'image_barang' => $filename,
             'harga_jual' => $request->harga_jual,
             'kategori_id' => $request->kategori_id,
             'toko_id' => $request->toko_id,

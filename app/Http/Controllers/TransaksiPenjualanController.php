@@ -19,7 +19,7 @@ class TransaksiPenjualanController extends Controller
     public function index()
     {
         $transaksiPenjualans = TransaksiPenjualan::with('toko', 'kasir', 'diskon', 'pajak')->get();
-        return response()->json($transaksiPenjualans);
+        return view("transaksipenjualan.index", compact("transaksiPenjualans"));
     }
 
     /**

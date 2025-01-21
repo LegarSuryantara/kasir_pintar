@@ -52,22 +52,28 @@ class TokoController extends Controller
 
         $tokos = Toko::findOrFail($id);
 
-        if ($request->hasFile('image_toko')) {
-            $image = $request->file('image_toko');
-            $filename = date("Y-m-d") . $image->getClientOriginalName();
-            $path = "toko_images/" . $filename;
+        // if ($request->hasFile('image_toko')) {
+        //     $image = $request->file('image_toko');
+        //     $filename = date("Y-m-d") . $image->getClientOriginalName();
+        //     $path = "toko_images/" . $filename;
 
-            Storage::disk('public')->put($path, file_get_contents($image));
+        //     Storage::disk('public')->put($path, file_get_contents($image));
 
-            $tokos->image_toko = $filename;
-        }
+        //     $tokos->image_toko = $filename;
+        // }
+
+        $image = $request->file('image_toko');
+        $filename = date("Y-m-d").$image->getClientOriginalName();
+        $path = "toko_images/".$filename;
+
+        Storage::disk('public')->put($path,file_get_contents($image));
 
         $tokos->update([
             'nama_toko' => $request->nama_toko,
             'no_hp' => $request->no_hp,
             'alamat' => $request->alamat,
             'user_id' => $request->user_id,
-
+            'image_toko' => $filename
         ]);
 
         return redirect()->route('toko.index')->with(['success' => 'berhasil']);
