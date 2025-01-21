@@ -2,10 +2,24 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{
-    BarangController, KategoriController, PajakController, CustomerController,
-    TokoController, KasirController, DiskonController, SupplierController,
-    CashDrawerController, ShiftController, TransaksiPenjualanController,
-    LoginController, RegisterController, DashboardController
+    BarangController,
+    KategoriController,
+    PajakController,
+    CustomerController,
+    TokoController,
+    KasirController,
+    DiskonController,
+    SupplierController,
+    CashDrawerController,
+    ShiftController,
+    TransaksiPenjualanController,
+    LoginController,
+    RegisterController,
+    DashboardController,
+    ShiftKasirController,
+    DashboardKasirController,
+    ItemsListController,
+    LoginKasirController
 };
 
 // Routes untuk pengguna tamu (guest)
@@ -18,12 +32,14 @@ Route::middleware('guest')->group(function () {
     // Login Routes
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login/authenticate', [LoginController::class, 'authenticate'])->name('login.authenticate');
+
+    Route::get('/loginKasir', [LoginKasirController::class, 'index'])->name('loginKasir');
+    Route::post('/loginKasir/authenticate', [LoginKasirController::class, 'authenticate'])->name('loginKasir.authenticate');
 });
 
 // Routes untuk pengguna yang sudah login (authenticated)
 Route::middleware('auth')->group(function () {
-    Route::get('/', [RegisterController::class, 'index'])->name('register');
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
     // Resourceful Routes
     Route::get('/transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
     Route::post('/transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
@@ -82,7 +98,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/cashdrawer/{cashdrawer}', [CashDrawerController::class, 'update'])->name('cashdrawer.update');
     Route::delete('/cashdrawer/{cashdrawer}', [CashDrawerController::class, 'delete'])->name('cashdrawer.delete');
     Route::get('/cashdrawer/{cashdrawer}/edit', [CashDrawerController::class, 'edit'])->name('cashdrawer.edit');
-    
+
     Route::get('/shift', [ShiftController::class, 'index'])->name('shift.index');
     Route::post('/shifts', [ShiftController::class, 'store'])->name('shift.store');
     Route::get('/shift/create', [ShiftController::class, 'create'])->name('shift.create');
@@ -93,17 +109,22 @@ Route::middleware('auth')->group(function () {
 
     // Logout Route
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
 });
 
-// dashboard Kasir
-Route::get('/dashboardKasir', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
-Route::get('/listItems', [ItemsListController::class, 'index'])->name('addItems.index');
-Route::get('/dashboardKasir/add/{id}', [DashboardKasirController::class, 'addItem'])->name('dashboardKasir.addItem');
-Route::get('/dashboardKasir/remove/{id}', [DashboardKasirController::class, 'removeItem'])->name('removeItem');
-Route::post('/dashboardKasir/bayar', [DashboardKasirController::class, 'bayar'])->name('dashboardKasir.bayar');
-Route::get('/dashboardKasir/batal', [DashboardKasirController::class, 'batal'])->name('dashboardKasir.batal');
-Route::get('/kasirTable', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
-Route::get('/shiftKasir', [ShiftKasirController::class, 'showShiftForm'])->name('shift.form');
-Route::post('/shiftKasir/start', [ShiftKasirController::class, 'startShift'])->name('shift.start');
-Route::post('/shiftKasir/end', [ShiftKasirController::class, 'endShift'])->name('shift.end');
+Route::middleware(['auth:kasir'])->group(function () {
+    Route::get('/dashboardKasir', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
+    Route::get('/listItems', [ItemsListController::class, 'index'])->name('addItems.index');
+    Route::get('/dashboardKasir/add/{id}', [DashboardKasirController::class, 'addItem'])->name('dashboardKasir.addItem');
+    Route::get('/dashboardKasir/remove/{id}', [DashboardKasirController::class, 'removeItem'])->name('removeItem');
+    Route::post('/dashboardKasir/bayar', [DashboardKasirController::class, 'bayar'])->name('dashboardKasir.bayar');
+    Route::get('/dashboardKasir/batal', [DashboardKasirController::class, 'batal'])->name('dashboardKasir.batal');
+    Route::get('/kasirTable', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
+    Route::get('/shiftKasir', [ShiftKasirController::class, 'showShiftForm'])->name('shift.form');
+    Route::post('/shiftKasir/start', [ShiftKasirController::class, 'startShift'])->name('shift.start');
+    Route::post('/shiftKasir/end', [ShiftKasirController::class, 'endShift'])->name('shift.end');
+    Route::get('/logoutKasir', [LoginKasirController::class, 'logout'])->name('logoutKasir');
 
+});
+
+    

@@ -7,7 +7,7 @@
         
         <ul class="nav flex-column">
             <li class="nav-item mb-2">
-                <a href="{{ route('dashboard') }}" class="nav-link text-dark {{ request()->routeIs('dashboard') ? 'active' : '' }}">
+                <a href="{{ route('dashboard.index') }}" class="nav-link text-dark {{ request()->routeIs('dashboard') ? 'active' : '' }}">
                     <i class="fas fa-home me-2"></i> Dashboard
                 </a>
             </li>

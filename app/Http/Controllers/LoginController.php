@@ -17,7 +17,7 @@ class LoginController extends Controller
     {
         // Redirect ke dashboard jika sudah login
         if (Auth::check()) {
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard.index');
         }
         return view('auth.login');
     }
@@ -37,7 +37,7 @@ class LoginController extends Controller
             $request->session()->regenerate();
             
             // Pastikan menggunakan nama route yang benar
-            return redirect()->intended(route('dashboard'));
+            return redirect()->intended(route('dashboard.index'));
         }
 
         return back()->withErrors([

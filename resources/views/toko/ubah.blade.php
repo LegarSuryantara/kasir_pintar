@@ -83,7 +83,7 @@
                     <option value="" selected disabled>Pilih owner</option>
                     @foreach ($users as $user)
                     <option value="{{ $user->id }}" {{ $user->id == $tokos->user_id ? 'selected' : '' }}>
-                            {{ $user->username }}
+                            {{ $user->nama }}
                         </option>
                     @endforeach
                 </select>
