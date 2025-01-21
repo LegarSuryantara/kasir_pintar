@@ -37,6 +37,7 @@ Route::middleware('guest')->group(function () {
     Route::post('/loginKasir/authenticate', [LoginKasirController::class, 'authenticate'])->name('loginKasir.authenticate');
 });
 
+
 // Routes untuk pengguna yang sudah login (authenticated)
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');

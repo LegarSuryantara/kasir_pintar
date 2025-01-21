@@ -10,7 +10,7 @@
             <div class="col-md-6">
                 <div class="order-summary">
                     <p>
-                        19 Desember 2024, No.67
+                        {{ now()->format('d F Y') }}, No.{{ $nomorTransaksi }}
                     </p>
                     @php
                     // Ambil data keranjang dan hitung subtotal, PPN, dan total
@@ -19,7 +19,9 @@
                     foreach ($cart as $item) {
                     $subtotal += $item['price'] * $item['quantity'];
                     }
-                    $ppn = $subtotal * 0.03; // Misalnya PPN 3%
+
+         
+                    $ppn = $subtotal * $persentasePajak; // Misalnya PPN 3%
                     $total = $subtotal + $ppn;
                     @endphp
                     @foreach($cart as $item)
@@ -34,7 +36,7 @@
                         <span>Rp. {{ number_format($subtotal, 0, ',', '.') }}</span>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <span>PPN (3%)</span>
+                        <span>PPN ({{ $persentasePajak * 100 }}%)</span>
                         <span>Rp. {{ number_format($ppn, 0, ',', '.') }}</span>
                     </div>
                     <div class="d-flex justify-content-between total">

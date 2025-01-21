@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
 
             $table->foreignId('toko_id')->constrained();
-            $table->foreignId('kasir_id')->constrained();
-            $table->foreignId('pajak_id')->constrained();
-            $table->foreignId('diskon_id')->constrained();
+            $table->foreignId('kasir_id')->nullable()->constrained();
+            $table->foreignId('pajak_id')->nullable()->constrained();
+            $table->foreignId('diskon_id')->nullable()->constrained();
             $table->decimal('subtotal', 10, 2);
             $table->decimal('total_harga', 10, 2);
             $table->integer('jumlah_barang');
