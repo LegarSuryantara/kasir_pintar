@@ -101,6 +101,14 @@ class DashboardKasirController extends Controller
 
     public function bayar(Request $request)
     {
+        // Proses pembayaran di sini
+    // Misalnya, simpan transaksi ke database
+
+    // Ambil data yang diperlukan untuk struk
+    
+   
+    // Redirect ke view struk
+    
         DB::beginTransaction();
 
         try {
@@ -167,5 +175,6 @@ class DashboardKasirController extends Controller
             DB::rollBack();
             return redirect()->route('dashboardKasir.index')->with('error', 'Terjadi kesalahan saat menyimpan transaksi.');
         }
+        return view('struk', compact('nomorTransaksi', 'persentasePajak'));
     }
 }

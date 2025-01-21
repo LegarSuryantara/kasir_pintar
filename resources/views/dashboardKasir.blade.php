@@ -3,24 +3,55 @@
 @section('title', 'Dashboard')
 
 @section('content')
+<style>
+    @media print {
+    /* Reset sembunyikan semua elemen */
+    body * {
+        visibility: hidden;
+    }
+    
+    /* Tampilkan hanya area yang ingin dicetak */
+    .printable-area,
+    .printable-area * {
+        visibility: visible;
+    }
+    
+    /* Atur posisi area yang dicetak */
+    .printable-area {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+    }
+    
+    /* Sembunyikan tombol yang tidak perlu dicetak */
+    .btn-cancel,
+    .btn-pay,
+    select,
+    form {
+        display: none !important;
+    }
+}
+</style>
+
 <div class="container">
     <h4 class="mb-4">Dashboard Kasir</h4>
     <div class="container mt-4">
         <div class="row">
             <div class="col-md-6">
-                <div class="order-summary">
+                <div class="order-summary printable-area"> <!-- Tambahkan kelas printable-area -->
                     <p>
                         {{ now()->format('d F Y') }}, No.{{ $nomorTransaksi }}
                     </p>
+                    <p>Kasir: {{ auth()->user()->nama_kasir }}</p>
                     @php
                     // Ambil data keranjang dan hitung subtotal, PPN, dan total
                     $cart = session()->get('cart', []);
                     $subtotal = 0;
                     foreach ($cart as $item) {
-                    $subtotal += $item['price'] * $item['quantity'];
+                        $subtotal += $item['price'] * $item['quantity'];
                     }
 
-         
                     $ppn = $subtotal * $persentasePajak; // Misalnya PPN 3%
                     $total = $subtotal + $ppn;
                     @endphp
@@ -59,7 +90,7 @@
                             <a href="{{ route('dashboardKasir.batal') }}" class="btn-cancel">
                                 Batal
                             </a>
-                            <button type="submit" class="btn-pay">
+                            <button type="submit" class="btn-pay" onclick="window.print()">
                                 Bayar
                             </button>
                         </div>
