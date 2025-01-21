@@ -16,27 +16,29 @@ class DashboardKasirController extends Controller
     {
         // Ambil kasir yang sedang login
         $kasir = Auth::guard('kasir')->user();
-        $kasirId = $kasir->id; // ID kasir
         $tokoId = $kasir->toko_id; // ID toko
 
         $barangs = Barang::all();
 
+        // Ambil data pajak toko
+        $pajak = DB::table('pajaks')->where('toko_id', $tokoId)->latest('created_at')->first();
+        $persentasePajak = $pajak ? $pajak->presentase / 100 : 0; // Default pajak 0%
 
+        $transaksiTerakhir = TransaksiPenjualan::where('toko_id', $tokoId)->count();
+        $nomorTransaksi = $transaksiTerakhir + 1;
+
+        // Ambil keranjang
         $cart = session()->get('cart', []);
-
-
         $subtotal = 0;
+
         foreach ($cart as $item) {
             $subtotal += $item['price'] * $item['quantity'];
         }
 
-
-        $ppn = $subtotal * 0.1;
-
-
+        $ppn = $subtotal * $persentasePajak; // PPN berdasarkan persentase pajak
         $total = $subtotal + $ppn;
 
-        return view('dashboardKasir', compact('barangs', 'cart', 'subtotal', 'total', 'ppn'));
+        return view('dashboardKasir', compact('barangs', 'cart', 'subtotal', 'total', 'ppn', 'persentasePajak', 'nomorTransaksi'));
     }
 
     public function addItem($id)
@@ -99,66 +101,71 @@ class DashboardKasirController extends Controller
 
     public function bayar(Request $request)
     {
-
-        // dd([
-        //     'request' => $request->all(),
-        //     'cart' => session()->get('cart', []),
-        // ]);
-
         DB::beginTransaction();
 
-        // Ambil kasir yang sedang login
-        $kasir = Auth::guard('kasir')->user();
-        $kasirId = $kasir->id; // ID kasir
-        $tokoId = $kasir->toko_id; // ID toko
+        try {
+            // Ambil kasir yang sedang login
+            $kasir = Auth::guard('kasir')->user();
+            $tokoId = $kasir->toko_id; // ID toko
 
-        $cart = session()->get('cart', []);
+            // Ambil data diskon dan pajak
+            $diskon = DB::table('diskons')->where('toko_id', $tokoId)->latest()->first();
+            $pajak = DB::table('pajaks')->where('toko_id', $tokoId)->latest()->first();
+            $persentaseDiskon = $diskon ? $diskon->presentase / 100 : 0;
+            $persentasePajak = $pajak ? $pajak->presentase / 100 : 0;
 
-        if (empty($cart)) {
-            return redirect()->route('dashboardKasir.index')->with('error', 'Keranjang belanja kosong.');
-        }
+            // Ambil keranjang
+            $cart = session()->get('cart', []);
+            if (empty($cart)) {
+                return redirect()->route('dashboardKasir.index')->with('error', 'Keranjang belanja kosong.');
+            }
 
-        $subtotal = 0;
-        $total_barang = 0;
-        foreach ($cart as $item) {
-            $subtotal += $item['price'] * $item['quantity'];
-            $total_barang += $item['quantity'];
-        }
+            $subtotal = 0;
+            $totalBarang = 0;
 
-        $ppn = $subtotal * 0.03;
-        $total_harga = $subtotal + $ppn;
+            foreach ($cart as $item) {
+                $subtotal += $item['price'] * $item['quantity'];
+                $totalBarang += $item['quantity'];
+            }
 
-        $transaksi = TransaksiPenjualan::create([
-            'toko_id' => $tokoId,
-            'kasir_id' => $kasirId,
-            'diskon_id' => 1,
-            'pajak_id' => 1,
-            'subtotal' => $subtotal,
-            'jumlah_barang' => $total_barang,
-            'total_harga' => $total_harga,
-            'metode_pembayaran' => $request->metode_pembayaran,
-            'tanggal_penjualan' => now(),
-        ]);
+            // Hitung diskon dan pajak
+            $totalDiskon = $subtotal * $persentaseDiskon;
+            $subtotalSetelahDiskon = $subtotal - $totalDiskon;
+            $totalPajak = $subtotalSetelahDiskon * $persentasePajak;
+            $totalHarga = $subtotalSetelahDiskon + $totalPajak;
 
-
-        foreach ($cart as $item) {
-            DetailPenjualan::create([
-                'transaksi_penjualan_id' => $transaksi->id,
-                'barang_id' => $item['id'],
-                'jumlah_barang' => $item['quantity'],
-                'harga_satuan' => $item['price'],
-                'total_harga' => $item['price'] * $item['quantity'],
+            // Simpan transaksi penjualan
+            $transaksi = TransaksiPenjualan::create([
+                'toko_id' => $tokoId,
+                'kasir_id' => $kasir->id,
+                'diskon_id' => $diskon->id ?? null,
+                'pajak_id' => $pajak->id ?? null,
+                'subtotal' => $subtotal,
+                'jumlah_barang' => $totalBarang,
+                'total_harga' => $totalHarga,
+                'metode_pembayaran' => $request->metode_pembayaran,
+                'tanggal_penjualan' => now(),
             ]);
 
-            // $barang = Barang::find($item['id']);
-            // if ($barang) {
-            //     $barang->stok -= $item['quantity'];
-            //     $barang->save();
-            // }
-        }
+            // Simpan detail transaksi
+            foreach ($cart as $item) {
+                DetailPenjualan::create([
+                    'transaksi_penjualan_id' => $transaksi->id,
+                    'barang_id' => $item['id'],
+                    'jumlah_barang' => $item['quantity'],
+                    'harga_satuan' => $item['price'],
+                    'total_harga' => $item['price'] * $item['quantity'],
+                ]);
+            }
 
-        session()->forget('cart');
-        DB::commit();
-        return redirect()->route('dashboardKasir.index')->with('success', 'Transaksi berhasil disimpan.');
+            // Kosongkan keranjang
+            session()->forget('cart');
+
+            DB::commit();
+            return redirect()->route('dashboardKasir.index')->with('success', 'Transaksi berhasil disimpan.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('dashboardKasir.index')->with('error', 'Terjadi kesalahan saat menyimpan transaksi.');
+        }
     }
 }

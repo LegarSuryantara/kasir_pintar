@@ -58,53 +58,44 @@
         const endTimeEl = document.getElementById('end-time');
 
         startBtn.addEventListener('click', () => {
-            const now = new Date();
-            const formattedTime = now.toTimeString().split(' ')[0]; // Format 'HH:mm:ss'
-            const date = now.toISOString().split('T')[0]; // Format 'YYYY-MM-DD'
+    const now = new Date();
+    const formattedTime = now.toTimeString().split(' ')[0]; // Format 'HH:mm:ss'
+    const date = now.toISOString().split('T')[0]; // Format 'YYYY-MM-DD'
 
-            startTimeEl.textContent = formattedTime;
-            endBtn.disabled = false;
-            startBtn.disabled = true;
+    startTimeEl.textContent = formattedTime;
+    endBtn.disabled = false;
+    startBtn.disabled = true;
 
-            // Send start time to the server
-            fetch("{{ route('shift.start') }}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    tanggal: date,
-                    waktu_masuk: formattedTime,
-                    toko_id: {{ Auth::guard('kasir')->user()->toko_id }},
-                    kasir_id: {{ Auth::guard('kasir')->user()->id }}
-                })
-            });
-        });
+    // Send start time to the server
+    fetch("{{ route('shift.start') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ tanggal: date, waktu_masuk: formattedTime, toko_id: 1, kasir_id: 1 }) // Ganti dengan ID yang sesuai
+    });
+});
 
-        endBtn.addEventListener('click', () => {
-            const now = new Date();
-            const formattedTime = now.toTimeString().split(' ')[0]; // Format 'HH:mm:ss'
-            endTimeEl.textContent = formattedTime;
-            endBtn.disabled = true;
-            startBtn.disabled = false;
+endBtn.addEventListener('click', () => {
+    const now = new Date();
+    const formattedTime = now.toTimeString().split(' ')[0]; // Format 'HH:mm:ss'
+    endTimeEl.textContent = formattedTime;
+    endBtn.disabled = true;
+    startBtn.disabled = false;
 
-            // Send end time to the server
-            fetch("{{ route('shift.end') }}", {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: JSON.stringify({
-                    waktu_keluar: formattedTime,
-                    toko_id: {{ Auth::guard('kasir')->user()->toko_id }},
-                    kasir_id: {{ Auth::guard('kasir')->user()->id }}
-                })
-            }).then(() => {
-                location.reload(); // Reload to update history
-            });
-        });
+    // Send end time to the server
+    fetch("{{ route('shift.end') }}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+        },
+        body: JSON.stringify({ waktu_keluar: formattedTime, toko_id: 1, kasir_id: 1 }) // Ganti dengan ID yang sesuai
+    }).then(() => {
+        location.reload(); // Reload to update history
+    });
+});
     });
 </script>
 @endsection
