@@ -40,6 +40,10 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        'kasir' => [
+            'driver' => 'session',
+            'provider' => 'kasirs',
+        ],
     ],
 
     /*
@@ -69,6 +73,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'kasirs' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Kasir::class, // Model untuk Kasir
+        ],
     ],
 
     /*

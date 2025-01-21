@@ -16,6 +16,11 @@
                     <i class="fas fa-tags me-2"></i> shift
                 </a>
             </li>
+            <li class="nav-item mb-2">
+                <a href="{{ route('logoutKasir') }}" class="nav-link text-dark">
+                    <i class="fas fa-sign-out-alt me-2"></i> Logout
+                </a>
+            </li>
         </ul>
     </div>
 </div>

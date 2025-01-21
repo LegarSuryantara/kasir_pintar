@@ -35,7 +35,7 @@
                         <td><img src="{{ asset('storage/toko_images/'.$toko->image_toko) }}" alt="" style="width: 100px; height: auto;"></td>
                         <td>{{ $toko->no_hp }}</td>
                         <td>{{ $toko->alamat }}</td>
-                        <td>{{ $toko->user->username}}</td>
+                        <td>{{ $toko->user->nama}}</td>
                         <td>
                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('toko.delete', $toko->id) }}" method="POST" class="d-inline">
                                 <a href="{{ route('toko.edit', $toko->id) }}" class="btn btn-sm btn-primary">
