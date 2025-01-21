@@ -18,7 +18,7 @@ use App\Http\Controllers\CashDrawerController;
 use App\Http\Controllers\DashboardKasirController;
 use App\Http\Controllers\TransaksiPenjualanController;
 use App\Http\Controllers\ItemsListController;
-
+use App\Http\Controllers\ShiftKasirController;
 
 Route::get('/transaksi-penjualan', [TransaksiPenjualanController::class, 'index'])->name('transaksi-penjualan.index');
 Route::post('/transaksi-penjualan', [TransaksiPenjualanController::class, 'store'])->name('transaksi-penjualan.store');
@@ -105,3 +105,6 @@ Route::get('/dashboardKasir/remove/{id}', [DashboardKasirController::class, 'rem
 Route::post('/dashboardKasir/bayar', [DashboardKasirController::class, 'bayar'])->name('dashboardKasir.bayar');
 Route::get('/dashboardKasir/batal', [DashboardKasirController::class, 'batal'])->name('dashboardKasir.batal');
 Route::get('/kasirTable', [DashboardKasirController::class, 'index'])->name('dashboardKasir.index');
+Route::get('/shiftKasir', [ShiftKasirController::class, 'showShiftForm'])->name('shift.form');
+Route::post('/shiftKasir/start', [ShiftKasirController::class, 'startShift'])->name('shift.start');
+Route::post('/shiftKasir/end', [ShiftKasirController::class, 'endShift'])->name('shift.end');

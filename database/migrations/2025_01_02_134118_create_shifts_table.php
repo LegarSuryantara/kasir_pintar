@@ -15,8 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('toko_id')->constrained();
             $table->foreignId('kasir_id')->constrained();
-            $table->time('waktu_masuk');
-            $table->time('waktu_keluar');
+            $table->date('tanggal');
+            $table->time('waktu_masuk')->nullable();
+            $table->time('waktu_keluar')->nullable();
             $table->timestamps();
         });
     }

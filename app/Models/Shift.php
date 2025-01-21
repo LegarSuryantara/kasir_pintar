@@ -8,12 +8,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Shift extends Model
 {
-    protected $fillable = [
-        'kasir_id',
-        'toko_id',
-        'waktu_masuk',
-        'waktu_keluar'
-    ];
+    protected $fillable = ['toko_id', 'kasir_id', 'tanggal', 'waktu_masuk', 'waktu_keluar'];
 
     public function toko(): BelongsTo
     {

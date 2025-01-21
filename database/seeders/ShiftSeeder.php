@@ -16,6 +16,7 @@ class ShiftSeeder extends Seeder
         DB::table('shifts')->insert([
             'kasir_id' => 1,
             'toko_id' => 1,
+            'tanggal' => "2024-01-01",
             'waktu_masuk' => '06:00:00',
             'waktu_keluar' => '18:00:00',
         ]);

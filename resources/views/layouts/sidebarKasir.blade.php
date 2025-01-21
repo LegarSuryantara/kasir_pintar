@@ -7,12 +7,12 @@
         
         <ul class="nav flex-column">
             <li class="nav-item mb-2">
-                <a href="" class="nav-link text-dark {{ request()->routeIs('barang.*') ? 'active' : '' }}">
+                <a href="{{ route('dashboardKasir.index') }}" class="nav-link text-dark {{ request()->routeIs('dashboardKasir.index') ? 'active' : '' }}">
                     <i class="fas fa-box me-2"></i> Kasir
                 </a>
             </li>
             <li class="nav-item mb-2">
-                <a href="" class="nav-link text-dark {{ request()->routeIs('kategori.*') ? 'active' : '' }}">
+                <a href="{{ route('shift.form') }}" class="nav-link text-dark {{ request()->routeIs('shift.form') ? 'active' : '' }}">
                     <i class="fas fa-tags me-2"></i> shift
                 </a>
             </li>
