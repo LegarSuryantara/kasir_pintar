@@ -44,14 +44,6 @@
         <form action="{{ route('transaksi_penjualan.store') }}" method="POST">
             @csrf
             <div class="mb-3">
-                <label class="form-label" for="id_customer">Nama Customer</label>
-                <select class="form-control" id="id_customer" name="id_customer">
-                    @foreach($customers as $customer)
-                        <option value="{{ $customer->id }}">{{ $customer->nama_customer }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
                 <label class="form-label" for="id_toko">Nama Toko</label>
                 <select class="form-control" id="id_toko" name="id_toko">
                     @foreach($tokos as $toko)
